@@ -583,7 +583,7 @@
 
                     if (state.currentLocation.address === 'Fetching location...' || state.currentLocation.address === 'Detecting...') {
                         try {
-                            const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`);
+                           const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`, { headers: { 'User-Agent': 'Naruksha-Safety-App' } });
                             const data = await res.json();
                             if (data.display_name) {
                                 state.currentLocation.address = data.display_name;
@@ -1007,3 +1007,4 @@
 </body>
 
 </html>
+
