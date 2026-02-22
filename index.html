@@ -11,12 +11,15 @@
     <link rel="apple-touch-icon" href="./icon.png">
 
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, setDoc, getDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        // Firebase Storage has been completely removed
         const firebaseConfig = {
             apiKey: "AIzaSyALS4Vn_QVZ0j3GBlvoZasjNePN-sVSai0",
             authDomain: "naruksha-8a2e9.firebaseapp.com",
@@ -82,9 +85,7 @@
                     </div>
 
                     <div class="flex items-center gap-3">
-                        <button id="install-btn" class="hidden bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg shadow-green-500/30 hover:scale-105 transition-transform">
-                            📲 INSTALL APP
-                        </button>
+                        <button id="install-btn" class="hidden bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg shadow-green-500/30 hover:scale-105 transition-transform">📲 INSTALL APP</button>
                         <button id="cloud-settings-btn" class="p-1.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm border border-white/20 cursor-pointer">⚙️</button>
                         <select id="lang-selector" class="bg-black/40 border border-white/20 text-xs rounded-lg px-2 py-1.5 text-white outline-none cursor-pointer focus:border-red-500 transition-colors font-mono">
                             <option value="en">English</option>
@@ -143,7 +144,9 @@
                                     </div>
                                     <div>
                                         <p id="current-address" class="text-white text-xs font-mono leading-tight mb-2">Detecting location...</p>
-                                        <p class="text-gray-500 text-xs font-mono"><span id="lat-display">Lat: --</span> | <span id="lng-display">Lng: --</span></p>
+                                        <p class="text-gray-500 text-xs font-mono">
+                                            <span id="lat-display">Lat: --</span> | <span id="lng-display">Lng: --</span>
+                                        </p>
                                     </div>
                                 </div>
 
@@ -357,7 +360,7 @@
             <div class="relative h-full flex flex-col items-center justify-center p-6">
                 <div class="hologram rounded-3xl p-6 w-full max-w-sm cyber-border slide-up">
                     <h3 id="modal-rec-title" class="text-center text-lg font-semibold mb-2">Record Evidence</h3>
-                    <p id="modal-rec-desc" class="text-center text-sm text-gray-400 mb-6">Audio & video will be saved locally.</p>
+                    <p id="modal-rec-desc" class="text-center text-sm text-gray-400 mb-6">Audio & video will be saved as proof locally</p>
                     
                     <div id="recording-status" class="hidden mb-6">
                         <div class="flex items-center justify-center gap-2 mb-4">
@@ -367,7 +370,7 @@
                         <div id="recording-timer" class="text-4xl font-light text-center">00:00</div>
                     </div>
                     
-                    <div id="video-preview" class="hidden mb-4 rounded-xl overflow-hidden bg-black aspect-video">
+                    <div id="video-preview" class="hidden mb-4 rounded-xl overflow-hidden bg-black aspect-video border border-red-500/50">
                         <video id="preview-video" autoplay muted playsinline class="w-full h-full object-cover"></video>
                     </div>
                     
@@ -602,7 +605,7 @@
                             }
                         } catch (e) { console.log("Address fetch busy"); }
                     }
-                }, (err) => {
+                }, () => {
                     document.getElementById('current-address').textContent = 'Location blocked.';
                     document.getElementById('gps-status-text').textContent = "DENIED";
                     document.getElementById('gps-status-text').className = "text-red-400 font-mono";
@@ -668,7 +671,7 @@
             setTimeout(() => toast.classList.add('hidden'), 4000);
         }
 
-        // --- 3. RECORDING ENGINE (LOCAL SAVING ONLY) ---
+        // --- 3. RECORDING ENGINE ---
         function startLocalRecordingUI(stream, type = 'video') {
             state.recordedChunks = [];
             state.mediaRecorder = new MediaRecorder(stream);
@@ -687,7 +690,7 @@
             state.mediaRecorder.start();
             state.seconds.recording = 0;
 
-            // This updates the HUD inside the existing manual modal to reflect background recording
+            // This sets up the UI inside the existing manual modal to reflect background recording
             document.getElementById('recording-status').classList.remove('hidden');
             document.getElementById('start-audio-record').classList.add('hidden');
             document.getElementById('start-video-record').classList.add('hidden');
@@ -764,12 +767,10 @@
             const lng = state.currentLocation.lng;
 
             if (lat && lng) {
-                // FIXED GOOGLE MAPS LINK FOR SMS
                 const mapsLink = `http://googleusercontent.com/maps.google.com/?q=${lat},${lng}`;
                 const phone1 = localStorage.getItem('local_phone_1') || '';
                 const message = encodeURIComponent(`🆘 EMERGENCY! I need help. My live location: ${mapsLink}`);
 
-                // Push to Firebase Database
                 if (window.db) {
                     try {
                         await window.fbAddDoc(window.fbCollection(window.db, "sos_pulses"), {
@@ -778,18 +779,19 @@
                     } catch (e) { }
                 }
 
-                // Auto-Open SMS
                 if (phone1) window.location.href = `sms:${phone1}?body=${message}`;
             } else {
                 showToast("Waiting for GPS to send location...");
             }
 
-            // 3. Secret Recording Start (Hidden UI) - Reuses the local recording logic without opening the modal
+            // 3. Secret Recording Start (Hidden UI)
             if (!state.mediaRecorder || state.mediaRecorder.state === 'inactive') {
                 try {
                     state.mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                     document.getElementById('preview-video').srcObject = state.mediaStream;
-                    startLocalRecordingUI(state.mediaStream, 'video');
+                    startLocalRecordingUI(state.mediaStream, 'video'); 
+                    // Note: We deliberately do NOT remove 'hidden' from 'record-modal' here, 
+                    // keeping the recording invisible until the user manually clicks the 🎥 button!
                 } catch (error) { 
                     console.error("Camera blocked"); 
                 }
