@@ -243,215 +243,6 @@
                     </section>
 
                     <section class="mb-8">
-                       window.fbGetDoc = getDoc;
-        window.fbCollection = collection;
-        window.fbAddDoc = addDoc;
-    </script>
-
-    <style>
-        * { font-family: 'Lexend', sans-serif; }
-        body { background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1628 100%); box-sizing: border-box; }
-        @keyframes danger-pulse { 0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), inset 0 0 20px rgba(239, 68, 68, 0.1); } 50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), inset 0 0 30px rgba(239, 68, 68, 0.2); } }
-        @keyframes gps-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
-        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes recording-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .sos-danger { animation: danger-pulse 2s infinite; }
-        .gps-ping { animation: gps-pulse 1.5s infinite; }
-        .neural-grid { background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px); background-size: 50px 50px; }
-        .cyber-border { border: 2px solid; border-image: linear-gradient(135deg, #ff1744, #ff6e40, #ff1744) 1; box-shadow: inset 0 0 20px rgba(255, 23, 68, 0.2), 0 0 20px rgba(255, 23, 68, 0.3); }
-        .hologram { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2)); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, 0.3); }
-        .slide-up { animation: slideUp 0.5s ease-out forwards; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(99, 102, 241, 0.05); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff1744, #ff6e40); border-radius: 4px; }
-    </style>
-</head>
-
-<body class="h-full">
-    <div id="app" class="h-full w-full text-white overflow-auto relative neural-grid">
-        <div class="fixed inset-0 pointer-events-none">
-            <div class="absolute top-10 left-1/4 w-72 h-72 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-            <div class="absolute top-40 right-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-            <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-        </div>
-
-        <div class="min-h-full w-full flex flex-col relative z-10">
-            <header class="p-6 border-b-2 border-red-500/30 hologram">
-                <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="relative">
-                            <div class="absolute inset-0 rounded-lg bg-gradient-to-r from-red-600 to-pink-600 blur-xl opacity-50"></div>
-                            <div class="relative w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center">
-                                <svg class="w-7 h-7 drop-shadow-lg" fill="currentColor" viewbox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.752.75c.133.056.26.119.38.187a4.5 4.5 0 01-.88 8.828H5.5z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div>
-                            <h1 id="app-title" class="text-2xl font-black bg-gradient-to-r from-red-400 via-pink-400 to-orange-400 bg-clip-text text-transparent tracking-wider">NAARI SURAKSHA</h1>
-                            <p id="app-subtitle" class="text-xs text-cyan-400 tracking-widest font-mono">⚡ SECURITY SYSTEM ACTIVE</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3">
-                        <button id="install-btn" class="hidden bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg shadow-green-500/30 hover:scale-105 transition-transform">📲 INSTALL APP</button>
-                        <button id="cloud-settings-btn" class="p-1.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm border border-white/20 cursor-pointer">⚙️</button>
-                        <select id="lang-selector" class="bg-black/40 border border-white/20 text-xs rounded-lg px-2 py-1.5 text-white outline-none cursor-pointer focus:border-red-500 transition-colors font-mono">
-                            <option value="en">English</option>
-                            <option value="hi">हिंदी (Hindi)</option>
-                            <option value="rj">राजस्थानी (Rajasthani)</option>
-                            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-                            <option value="gu">ગુજરાતી (Gujarati)</option>
-                            <option value="mr">मराठी (Marathi)</option>
-                            <option value="bn">বাংলা (Bengali)</option>
-                            <option value="or">ଓଡ଼ିଆ (Odia)</option>
-                            <option value="as">অসমীয়া (Assamese)</option>
-                            <option value="te">తెలుగు (Telugu)</option>
-                            <option value="ta">தமிழ் (Tamil)</option>
-                            <option value="kn">ಕನ್ನಡ (Kannada)</option>
-                            <option value="ml">മലയാളം (Malayalam)</option>
-                        </select>
-                        <div id="location-status" class="flex items-center gap-2 px-4 py-2 rounded-lg cyber-border text-xs font-mono">
-                            <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse"></span>
-                            <span id="loc-status-text" class="text-yellow-400">INITIALIZING GPS...</span>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <main class="flex-1 p-6 overflow-auto">
-                <div class="max-w-6xl mx-auto">
-                    <section class="mb-8">
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                            <div class="lg:col-span-2 hologram rounded-3xl p-8 flex flex-col items-center justify-center min-h-96 cyber-border relative overflow-hidden group cursor-pointer">
-                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <div class="relative z-10 text-center">
-                                    <p id="sos-title" class="text-red-400 text-sm font-mono tracking-widest mb-6 uppercase">Emergency Alert System</p>
-                                    <button id="sos-btn" class="relative w-48 h-48 mb-6 group mx-auto">
-                                        <div class="absolute inset-0 rounded-full border-2 border-red-500/30 sos-danger"></div>
-                                        <div class="absolute inset-8 rounded-full border-2 border-red-500/60 sos-danger" style="animation-delay: 0.3s;"></div>
-                                        <div class="absolute inset-16 rounded-full border-2 border-red-500/80 sos-danger" style="animation-delay: 0.6s;"></div>
-                                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-red-600 via-red-700 to-red-800 shadow-2xl shadow-red-600/50 flex flex-col items-center justify-center group-hover:shadow-red-500/80 transition-all duration-300 active:scale-95 cursor-pointer">
-                                            <svg class="w-16 h-16 mb-2 drop-shadow-lg" fill="currentColor" viewbox="0 0 24 24">
-                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
-                                            </svg>
-                                            <span id="sos-text" class="text-2xl font-black text-white drop-shadow-lg tracking-widest text-center px-2 leading-tight">TAP FOR HELP</span>
-                                        </div>
-                                    </button>
-                                    <p id="sos-desc" class="text-gray-400 text-xs font-mono px-4">Press and send SOS. Background secret recording will start automatically.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col gap-6">
-                                <div class="hologram rounded-2xl p-6 cyber-border h-44 flex flex-col justify-between group hover:shadow-lg hover:shadow-red-500/20 transition-all">
-                                    <div>
-                                        <p id="live-loc-title" class="text-red-400 text-xs font-mono tracking-widest uppercase mb-2">📡 Live Location</p>
-                                        <div class="relative w-12 h-12 mb-3">
-                                            <div class="absolute inset-0 rounded-full bg-red-500/30 gps-ping"></div>
-                                            <div class="relative w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-lg font-bold">📍</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p id="current-address" class="text-white text-xs font-mono leading-tight mb-2">Detecting location...</p>
-                                        <p class="text-gray-500 text-xs font-mono">
-                                            <span id="lat-display">Lat: --</span> | <span id="lng-display">Lng: --</span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="hologram rounded-2xl p-4 cyber-border">
-                                    <div class="space-y-3">
-                                        <div class="flex items-center justify-between text-xs">
-                                            <span id="status-label" class="text-gray-400 font-mono">STATUS</span>
-                                            <span id="status-val" class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full font-mono">ARMED</span>
-                                        </div>
-                                        <div class="flex items-center justify-between text-xs">
-                                            <span id="gps-label" class="text-gray-400 font-mono">GPS SIGNAL</span>
-                                            <span id="gps-status-text" class="text-yellow-400 font-mono">SEARCHING</span>
-                                        </div>
-                                        <div class="flex items-center justify-between text-xs">
-                                            <span id="media-label" class="text-gray-400 font-mono">MEDIA PERMISSIONS</span>
-                                            <span id="media-status" class="text-yellow-400 font-mono">PENDING</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="mb-8">
-                        <h2 id="tools-title" class="text-sm font-mono tracking-widest text-red-400 uppercase mb-6">⚔️ Emergency Tools</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <button id="location-btn" class="hologram rounded-2xl p-6 cyber-border group hover:shadow-cyan-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
-                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                    <svg class="w-7 h-7 text-cyan-400" fill="currentColor" viewbox="0 0 24 24">
-                                        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    </svg>
-                                </div>
-                                <p id="btn-loc-title" class="font-bold text-white text-sm mb-1">LIVE LOCATION</p>
-                                <p id="btn-loc-desc" class="text-xs text-gray-400">Stream & Share</p>
-                            </button>
-
-                            <button id="fakecall-btn" class="hologram rounded-2xl p-6 cyber-border group hover:shadow-green-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
-                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                    <svg class="w-7 h-7 text-green-400" fill="currentColor" viewbox="0 0 24 24">
-                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-                                    </svg>
-                                </div>
-                                <p id="btn-call-title" class="font-bold text-white text-sm mb-1">FAKE CALL</p>
-                                <p id="btn-call-desc" class="text-xs text-gray-400">Escape Safely</p>
-                            </button>
-
-                            <button id="record-btn" class="hologram rounded-2xl p-6 cyber-border group hover:shadow-purple-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
-                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-violet-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                    <svg class="w-7 h-7 text-purple-400" fill="currentColor" viewbox="0 0 24 24">
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                    </svg>
-                                </div>
-                                <p id="btn-rec-title" class="font-bold text-white text-sm mb-1 text-center">RECORD EVIDENCE</p>
-                                <p id="btn-rec-desc" class="text-xs text-gray-400">Audio & Video Proof</p>
-                            </button>
-
-                            <button id="history-btn" class="hologram rounded-2xl p-6 cyber-border group hover:shadow-orange-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
-                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                    <svg class="w-7 h-7 text-orange-400" fill="currentColor" viewbox="0 0 24 24">
-                                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7h-3v3H9v-3H6v-2h3V6h2v3h3v2z" />
-                                    </svg>
-                                </div>
-                                <p id="btn-hist-title" class="font-bold text-white text-sm mb-1">LOCATION HISTORY</p>
-                                <p id="btn-hist-desc" class="text-xs text-gray-400">View Timeline</p>
-                            </button>
-                        </div>
-                    </section>
-
-                    <section class="mb-8">
-                        <h2 class="text-sm font-mono tracking-widest text-red-400 uppercase mb-4">🚨 National Helplines</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <a href="tel:112" class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-red-500/50 transition-all cursor-pointer">
-                                <div class="w-12 h-12 rounded-full bg-red-500/30 flex items-center justify-center text-xl">🆘</div>
-                                <div>
-                                    <p class="font-bold text-sm text-white">National Emergency</p>
-                                    <p class="text-xl text-red-400 font-black">112</p>
-                                </div>
-                            </a>
-                            <a href="tel:100" class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-blue-500/50 transition-all cursor-pointer">
-                                <div class="w-12 h-12 rounded-full bg-blue-500/30 flex items-center justify-center text-xl">🚓</div>
-                                <div>
-                                    <p class="font-bold text-sm text-white">Police</p>
-                                    <p class="text-xl text-blue-400 font-black">100</p>
-                                </div>
-                            </a>
-                            <a href="tel:181" class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-pink-500/50 transition-all cursor-pointer">
-                                <div class="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center text-xl">🛡️</div>
-                                <div>
-                                    <p class="font-bold text-sm text-white">Women Helpline</p>
-                                    <p class="text-xl text-pink-400 font-black">181</p>
-                                </div>
-                            </a>
-                        </div>
-                    </section>
-
-                    <section class="mb-8">
                         <h2 id="contacts-title" class="text-sm font-mono tracking-widest text-red-400 uppercase mb-4">🔌 Emergency Contacts</h2>
                         <div class="hologram rounded-2xl p-6 cyber-border">
                             <div class="grid grid-cols-2 gap-4">
@@ -647,11 +438,11 @@
             mr: { subtitle: "⚡ सुरक्षा प्रणाली सक्रिय", sosTitle: "आणीबाणी अलर्ट सिस्टम", sosBtn: "मदतीसाठी दाबा", sosDesc: "SOS पाठवा. गुप्त रेकॉर्डिंग आपोआप सुरू होईल.", liveLoc: "📡 लाईव्ह लोकेशन", detecting: "लोकेशन शोधत आहे...", status: "स्थिती", armed: "सक्रिय", gpsSig: "जीपीएस सिग्नल", mediaPerm: "मीडिया परवानग्या", tools: "⚔️ आपत्कालीन साधने", btnLoc: "लाईव्ह लोकेशन", btnLocDesc: "स्ट्रीम आणि शेअर करा", btnCall: "खोटा कॉल", btnCallDesc: "सुरक्षित सुटका", btnRec: "पुरावा रेकॉर्ड", btnRecDesc: "ऑडिओ/व्हिडिओ", btnHist: "लोकेशन इतिहास", btnHistDesc: "टाइमलाइन पहा", contacts: "🔌 आपत्कालीन संपर्क", primary: "प्राथमिक संपर्क", secondary: "दुय्यम संपर्क", ready: "कॉल करा", footer: "🔐 एनक्रिप्टेड | 🛡️ सुरक्षित" },
             bn: { subtitle: "⚡ নিরাপত্তা ব্যবস্থা সক্রিয়", sosTitle: "জরুরী সতর্কতা", sosBtn: "সাহায্যের জন্য টিপুন", sosDesc: "SOS পাঠান। গোপন রেকর্ডিং স্বয়ংক্রিয়ভাবে শুরু হবে।", liveLoc: "📡 লাইভ লোকেশন", detecting: "লোকেশন খোঁজা হচ্ছে...", status: "অবস্থা", armed: "সক্রিয়", gpsSig: "জিপিএস সংকেত", mediaPerm: "মিডিয়া অনুমতি", tools: "⚔️ জরুরী সরঞ্জাম", btnLoc: "লাইভ লোকেশন", btnLocDesc: "শেয়ার করুন", btnCall: "ভুয়া কল", btnCallDesc: "নিরাপদে পালান", btnRec: "প্রমাণ রেকর্ড", btnRecDesc: "অডিও/ভিডিও", btnHist: "লোকেশন ইতিহাস", btnHistDesc: "টাইমলাইন দেখুন", contacts: "🔌 পরিচিতি", primary: "প্রাথমিক যোগাযোগ", secondary: "মাধ্যমিক যোগাযোগ", ready: "কল করুন", footer: "🔐 এনক্রিপ্ট করা | 🛡️ নিরাপদ" },
             or: { subtitle: "⚡ ସୁରକ୍ଷା ବ୍ୟବସ୍ଥା ସକ୍ରିୟ", sosTitle: "ଜରୁରୀକାଳୀନ ଆଲର୍ଟ", sosBtn: "ସାହାଯ୍ୟ ପାଇଁ ଦବାନ୍ତୁ", sosDesc: "SOS ପଠାନ୍ତୁ। ଗୁପ୍ତ ରେକର୍ଡିଂ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଆରମ୍ଭ ହେବ।", liveLoc: "📡 ଲାଇଭ୍ ଲୋକେସନ୍", detecting: "ଲୋକେସନ୍ ଖୋଜୁଛି...", status: "ସ୍ଥିତି", armed: "ସକ୍ରିୟ", gpsSig: "GPS ସିଗନାଲ୍", mediaPerm: "ମିଡିଆ ଅନୁମତି", tools: "⚔️ ଜରୁରୀକାଳୀନ ଉପକରଣ", btnLoc: "ଲାଇଭ୍ ଲୋକେସନ୍", btnLocDesc: "ସେୟାର କରନ୍ତୁ", btnCall: "ନକଲି କଲ୍", btnCallDesc: "ସୁରକ୍ଷିତ ରୁହନ୍ତୁ", btnRec: "ପ୍ରମାଣ ରେକର୍ଡ", btnRecDesc: "ଅଡିଓ/ଭିଡିଓ", btnHist: "ଲୋକେସନ୍ ଇତିହାସ", btnHistDesc: "ଟାଇମଲାଇନ୍ ଦେଖନ୍ତୁ", contacts: "🔌 ସମ୍ପର୍କ", primary: "ପ୍ରାଥମିକ ସମ୍ପର୍କ", secondary: "ଦ୍ଵିତୀୟ ସମ୍ପର୍କ", ready: "କଲ୍ କରନ୍ତୁ", footer: "🔐 ସୁରକ୍ଷିତ | ⚡ ରିଅଲ୍-ଟାଇମ୍" },
-            as: { subtitle: "⚡ সুৰক্ষা ব্যৱস্থা সক্ৰিয়", sosTitle: "জৰুৰীকালীন এলাৰ্ট", sosBtn: "সহায়ৰ বাবে টিপক", sosDesc: "SOS পঠাওক। গোপন ৰেকৰ্ডিং স্বয়ংক্ৰিয়ভাৱে আৰম্ভ হ'ব।", liveLoc: "📡 লাইভ লোকেশ্বন", detecting: "বিচাৰি থকা হৈছে...", status: "স্থিতি", armed: "সক্ৰিয়", gpsSig: "GPS ছিগনেল", mediaPerm: "মিডিয়া অনুমতি", tools: "⚔️ জৰুৰী সঁজুলি", btnLoc: "লাইভ লোকেশ্বন", btnLocDesc: "শ্বেয়াৰ কৰক", btnCall: "ভুৱা কল", btnCallDesc: "সুৰক্ষিত পলায়ন", btnRec: "প্ৰমাণ ৰেকৰ্ড", btnRecDesc: "অডিঅ'/ভিডিঅ'", btnHist: "অৱস্থান ইতিহাস", btnHistDesc: "টাইমলাইন চাওক", contacts: "🔌 জৰুৰী সম্পৰ্ক", primary: "প্ৰাথমিক সম্পৰ্ক", secondary: "দ্বিতীয় সম্পৰ্ক", ready: "কল কৰক", footer: "🔐 সুৰক্ষিত | ⚡ ৰিয়েল-টাইম" },
+            as: { subtitle: "⚡ সুৰক্ষা ব্যৱস্থা সক্ৰিয়", sosTitle: "জৰুରୀকালীন এলাৰ্ট", sosBtn: "সহায়ৰ বাবে টিপক", sosDesc: "SOS পঠাওক। গোপন ৰেকৰ্ডিং স্বয়ংক্ৰিয়ভাৱে আৰম্ভ হ'ব।", liveLoc: "📡 লাইভ লোকেশ্বন", detecting: "বিচাৰি থকা হৈছে...", status: "স্থিতি", armed: "সক্ৰিয়", gpsSig: "GPS ছিগনেল", mediaPerm: "মিডিয়া অনুমতি", tools: "⚔️ জৰুৰী সঁজুলি", btnLoc: "লাইভ লোকেশ্বন", btnLocDesc: "শ্বেয়াৰ কৰক", btnCall: "ভুৱা কল", btnCallDesc: "সুৰক্ষিত পলায়ন", btnRec: "প্ৰমাণ ৰেকৰ্ড", btnRecDesc: "অডিঅ'/ভিডিঅ'", btnHist: "অৱস্থান ইতিহাস", btnHistDesc: "টাইমলাইন চাওক", contacts: "🔌 জৰুৰী সম্পৰ্ক", primary: "প্ৰাথমিক সম্পৰ্ক", secondary: "দ্বিতীয় সম্পৰ্ক", ready: "কল কৰক", footer: "🔐 সুৰক্ষিত | ⚡ ৰিয়েল-টাইম" },
             te: { subtitle: "⚡ భద్రతా వ్యవస్థ సక్రియం", sosTitle: "అత్యవసర హెచ్చరిక", sosBtn: "సహాయం కోసం నొక్కండి", sosDesc: "SOS పంపండి. రహస్య రికార్డింగ్ స్వయంచాలకంగా ప్రారంభమవుతుంది.", liveLoc: "📡 లైవ్ లొకేషన్", detecting: "లొకేషన్ కనుగొనబడుతోంది...", status: "స్థితి", armed: "సక్రియం", gpsSig: "GPS సిగ్నల్", mediaPerm: "మీడియా అనుమతులు", tools: "⚔️ అత్యవసర సాధనాలు", btnLoc: "లైవ్ లొకేషన్", btnLocDesc: "షేర్ చేయండి", btnCall: "నకిలీ కాల్", btnCallDesc: "సురక్షితంగా తప్పించుకోండి", btnRec: "ఆధారం రికార్డ్", btnRecDesc: "ఆడియో/వీడియో", btnHist: "లొకేషన్ చరిత్ర", btnHistDesc: "టైమ్‌లైన్ చూడండి", contacts: "🔌 పరిచయాలు", primary: "ప్రాథమిక పరిచయం", secondary: "ద్వితీయ పరిచయం", ready: "కాల్ చేయండి", footer: "🔐 సురక్షితం | 🛡️ ఎన్‌క్రిప్ట్" },
             ta: { subtitle: "⚡ பாதுகாப்பு அமைப்பு செயலில் உள்ளது", sosTitle: "அவசர எச்சரிக்கை", sosBtn: "உதவிக்கு அழுத்தவும்", sosDesc: "SOS ஐ அனுப்பவும். ரகசிய பதிவு தானாகவே தொடங்கும்.", liveLoc: "📡 நேரலை இருப்பிடம்", detecting: "இருப்பிடம் தேடப்படுகிறது...", status: "நிலை", armed: "தயார்", gpsSig: "ஜிபிஎஸ் சிக்னல்", mediaPerm: "ஊடக அனுமதிகள்", tools: "⚔️ அவசர கருவிகள்", btnLoc: "நேரலை இருப்பிடம்", btnLocDesc: "பகிரவும்", btnCall: "போலி அழைப்பு", btnCallDesc: "பாதுகாப்பாக தப்பிக்க", btnRec: "ஆதாரம் பதிவு", btnRecDesc: "ஆடியோ/வீడియో", btnHist: "இருப்பிட வரலாறு", btnHistDesc: "வரலாற்றைப் காண்க", contacts: "🔌 தொடர்புகள்", primary: "முதன்மை தொடர்பு", secondary: "இரண்டாம் நிலை தொடர்பு", ready: "அழைக்க", footer: "🔐 பாதுகாப்பானது | 🛡️ என்க்ரிப்ட்" },
             kn: { subtitle: "⚡ ಭದ್ರತಾ ವ್ಯವಸ್ಥೆ ಸಕ್ರಿಯ", sosTitle: "ತುರ್ತು ಎಚ್ಚರಿಕೆ", sosBtn: "ಸಹಾಯಕ್ಕಾಗಿ ಒತ್ತಿರಿ", sosDesc: "SOS ಕಳುಹಿಸಿ. ರಹಸ್ಯ ರೆಕಾರ್ಡಿಂಗ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ.", liveLoc: "📡 ಲೈವ್ ಸ್ಥಳ", detecting: "ಹುಡುಕಲಾಗುತ್ತಿದೆ...", status: "ಸ್ಥಿತಿ", armed: "ಸಕ್ರಿಯ", gpsSig: "GPS ಸಿಗ್ನಲ್", mediaPerm: "ಮಾಧ್ಯಮ ಅನುಮತಿಗಳು", tools: "⚔️ ತುರ್ತು ಉಪಕರಣಗಳು", btnLoc: "ಲೈವ್ ಸ್ಥಳ", btnLocDesc: "ಹಂಚಿಕೊಳ್ಳಿ", btnCall: "ನಕಲಿ ಕರೆ", btnCallDesc: "ಸುರಕ್ಷಿತವಾಗಿ ತಪ್ಪಿಸಿಕೊಳ್ಳಿ", btnRec: "ಸಾಕ್ಷ್ಯ ರೆಕಾರ್ಡ್", btnRecDesc: "ಆಡಿಯೋ/ವಿಡಿಯೋ", btnHist: "ಸ್ಥಳ ಇತಿಹಾಸ", btnHistDesc: "ಟೈಮ್‌ಲೈನ್ ನೋಡಿ", contacts: "🔌 ಸಂಪರ್ಕಗಳು", primary: "ಪ್ರಾಥಮಿಕ ಸಂಪರ್ಕ", secondary: "ದ್ವಿತೀಯ ಸಂಪರ್ಕ", ready: "ಕರೆ ಮಾಡಿ", footer: "🔐 ಸುರಕ್ಷಿತ | 🛡️ ಎನ್‌ಕ್ರಿಪ್ಟ್" },
-            ml: { subtitle: "⚡ സുരക്ഷാ സിസ്റ്റം സജീവം", sosTitle: "അടിയന്തര അലർട്ട്", sosBtn: "സഹായത്തിനായി അമർത്തുക", sosDesc: "SOS അയക്കുക. രഹസ്യ റെക്കോർഡിംഗ് യാന്ത്രികമായി ആരംഭിക്കും.", liveLoc: "📡 ലൈവ് ലൊക്കേഷൻ", detecting: "തിരയുന്നു...", status: "നില", armed: "സജീവം", gpsSig: "GPS സിഗ്നൽ", mediaPerm: "മീഡിയ അനുമതികൾ", tools: "⚔️ അടിയന്തര ടൂളുകൾ", btnLoc: "ലൈവ് ലൊക്കേഷൻ", btnLocDesc: "പങ്കിടുക", btnCall: "വ്യാജ കോൾ", btnCallDesc: "സുരക്ഷിതമായി രക്ഷപ്പെടുക", btnRec: "തെളിവ് റെക്കോർഡ്", btnRecDesc: "ഓഡിയോ/വീഡിയോ", btnHist: "ലൊക്കേഷൻ ചരിത്രം", btnHistDesc: "ടൈംലൈൻ കാണുക", contacts: "🔌 കോൺടാക്റ്റുകൾ", primary: "പ്രാഥമിക കോൺടാക്റ്റ്", secondary: "ദ്വിതീയ കോൺടാക്റ്റ്", ready: "വിളിക്കാൻ", footer: "🔐 സുരക്ഷിതം | 🛡️ എൻക്രിപ്റ്റ് ചെയ്തത്" }
+            ml: { subtitle: "⚡ സുരക്ഷാ സിസ്റ്റം സജീവം", sosTitle: "അടിയന്തര അലർട്ട്", sosBtn: "സഹಾಯത്തിനായി അമർത്തുക", sosDesc: "SOS അയക്കുക. രഹസ്യ റെക്കോർഡിംഗ് യാന്ത്രികമായി ആരംഭിക്കും.", liveLoc: "📡 ലൈവ് ലൊക്കേഷൻ", detecting: "തിരയുന്നു...", status: "നില", armed: "സജീവം", gpsSig: "GPS സിഗ്നൽ", mediaPerm: "മീഡിയ അനുമതികൾ", tools: "⚔️ അടിയന്തര ടൂളുകൾ", btnLoc: "ലൈവ് ലൊക്കേഷൻ", btnLocDesc: "പങ്കിടുക", btnCall: "വ്യാജ കോൾ", btnCallDesc: "സുരക്ഷിതമായി രക്ഷപ്പെടുക", btnRec: "തെളിവ് റെക്കോർഡ്", btnRecDesc: "ഓഡിയോ/വീഡിയോ", btnHist: "ലൊക്കേഷൻ ചരിത്രം", btnHistDesc: "ടൈംലൈൻ കാണുക", contacts: "🔌 കോൺടാക്റ്റുകൾ", primary: "പ്രാഥമിക കോൺടാക്റ്റ്", secondary: "ദ്വിതീയ കോൺടാക്റ്റ്", ready: "വിളിക്കാൻ", footer: "🔐 സുരക്ഷിതം | 🛡️ എൻക്രിപ്റ്റ് ചെയ്തത്" }
         };
 
         const stateLangMap = {
@@ -664,7 +455,7 @@
 
         // --- APP STATE ---
         let state = {
-            currentLocation: { lat: null, lng: null, address: 'Detecting...' },
+            currentLocation: { lat: null, lng: null, address: 'Detecting location...' },
             history: JSON.parse(localStorage.getItem('naruksha_history') || '[]'),
             mediaStream: null,
             mediaRecorder: null,
@@ -790,30 +581,45 @@
                     document.getElementById('location-status').querySelector('span').classList.replace('bg-yellow-400', 'bg-green-400');
                     document.getElementById('loc-status-text').classList.replace('text-yellow-400', 'text-green-400');
 
-                    if (state.currentLocation.address === 'Fetching location...' || state.currentLocation.address === 'Detecting...') {
+                    // ==========================================
+                    // --- BULLETPROOF LOCATION FIX ---
+                    // ==========================================
+                    if (state.currentLocation.address === 'Fetching location...' || state.currentLocation.address === 'Detecting location...' || state.currentLocation.address === 'Detecting...') {
                         try {
-                           const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`, { headers: { 'User-Agent': 'Naruksha-Safety-App' } });
-                            const data = await res.json();
-                            if (data.display_name) {
-                                state.currentLocation.address = data.display_name;
-                                document.getElementById('current-address').textContent = data.display_name.substring(0, 80) + "...";
+                           const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`, { 
+                               headers: { 'User-Agent': 'Naruksha-Safety-App-v2' } 
+                           });
+                           
+                           if (!res.ok) throw new Error("API Limit Reached"); // If 404/403, throw an error to trigger the catch block below
+                           
+                           const data = await res.json();
+                           if (data.display_name) {
+                               state.currentLocation.address = data.display_name;
+                               document.getElementById('current-address').textContent = data.display_name.substring(0, 80) + "...";
 
-                                if (!userForcedLang && data.address && data.address.state) {
-                                    const foundState = data.address.state.toLowerCase();
-                                    for (let key in stateLangMap) {
-                                        if (foundState.includes(key)) {
-                                            currentLang = stateLangMap[key];
-                                            break;
-                                        }
-                                    }
-                                    if (!stateLangMap[foundState] && data.address.country_code === 'in') {
-                                        currentLang = 'hi';
-                                    }
-                                    applyTranslations();
-                                }
-                            }
-                        } catch (e) { console.log("Address fetch busy"); }
+                               if (!userForcedLang && data.address && data.address.state) {
+                                   const foundState = data.address.state.toLowerCase();
+                                   for (let key in stateLangMap) {
+                                       if (foundState.includes(key)) {
+                                           currentLang = stateLangMap[key];
+                                           break;
+                                       }
+                                   }
+                                   if (!stateLangMap[foundState] && data.address.country_code === 'in') {
+                                       currentLang = 'hi';
+                                   }
+                                   applyTranslations();
+                               }
+                           }
+                        } catch (e) { 
+                            console.log("Address fetch busy or blocked. Using raw coordinates."); 
+                            const fallbackText = `Lat: ${pos.coords.latitude.toFixed(5)}, Lng: ${pos.coords.longitude.toFixed(5)}`;
+                            state.currentLocation.address = fallbackText;
+                            document.getElementById('current-address').textContent = "GPS Coordinates Active";
+                            document.getElementById('current-address').classList.add('text-green-400');
+                        }
                     }
+                    // ==========================================
                 }, () => {
                     document.getElementById('current-address').textContent = 'Location blocked.';
                     document.getElementById('gps-status-text').textContent = "DENIED";
@@ -859,7 +665,7 @@
                 const color = item.status === 'sos' ? 'text-red-400' : 'text-cyan-400';
 
                 // FIXED GOOGLE MAPS LINK FOR HISTORY
-                const mapLink = `http://googleusercontent.com/maps.google.com/?q=${item.latitude},${item.longitude}`;
+                const mapLink = `https://www.google.com/maps?q=${item.latitude},${item.longitude}`;
 
                 return `
                 <div class="bg-white/5 rounded-xl p-4 border border-gray-700/50">
@@ -976,7 +782,8 @@
             const lng = state.currentLocation.lng;
 
             if (lat && lng) {
-                const mapsLink = `http://googleusercontent.com/maps.google.com/?q=${lat},${lng}`;
+                // FIXED GOOGLE MAPS LINK FOR SMS
+                const mapsLink = `https://www.google.com/maps?q=${lat},${lng}`;
                 const phone1 = localStorage.getItem('local_phone_1') || '';
                 const message = encodeURIComponent(`🆘 EMERGENCY! I need help. My live location: ${mapsLink}`);
 
@@ -1216,5 +1023,3 @@
 </body>
 
 </html>
-
-
