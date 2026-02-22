@@ -11,15 +11,12 @@
     <link rel="apple-touch-icon" href="./icon.png">
 
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, setDoc, getDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Removed storageBucket to prevent Firebase Storage errors
         const firebaseConfig = {
             apiKey: "AIzaSyALS4Vn_QVZ0j3GBlvoZasjNePN-sVSai0",
             authDomain: "naruksha-8a2e9.firebaseapp.com",
@@ -40,123 +37,30 @@
     </script>
 
     <style>
-        * {
-            font-family: 'Lexend', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1628 100%);
-            box-sizing: border-box;
-        }
-
-        @keyframes danger-pulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), inset 0 0 20px rgba(239, 68, 68, 0.1);
-            }
-
-            50% {
-                box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), inset 0 0 30px rgba(239, 68, 68, 0.2);
-            }
-        }
-
-        @keyframes gps-pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes recording-pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        .sos-danger {
-            animation: danger-pulse 2s infinite;
-        }
-
-        .gps-ping {
-            animation: gps-pulse 1.5s infinite;
-        }
-
-        .neural-grid {
-            background-image:
-                linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        .cyber-border {
-            border: 2px solid;
-            border-image: linear-gradient(135deg, #ff1744, #ff6e40, #ff1744) 1;
-            box-shadow: inset 0 0 20px rgba(255, 23, 68, 0.2), 0 0 20px rgba(255, 23, 68, 0.3);
-        }
-
-        .hologram {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-
-        .slide-up {
-            animation: slideUp 0.5s ease-out forwards;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(99, 102, 241, 0.05);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #ff1744, #ff6e40);
-            border-radius: 4px;
-        }
+        * { font-family: 'Lexend', sans-serif; }
+        body { background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1628 100%); box-sizing: border-box; }
+        @keyframes danger-pulse { 0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), inset 0 0 20px rgba(239, 68, 68, 0.1); } 50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), inset 0 0 30px rgba(239, 68, 68, 0.2); } }
+        @keyframes gps-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
+        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes recording-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .sos-danger { animation: danger-pulse 2s infinite; }
+        .gps-ping { animation: gps-pulse 1.5s infinite; }
+        .neural-grid { background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px); background-size: 50px 50px; }
+        .cyber-border { border: 2px solid; border-image: linear-gradient(135deg, #ff1744, #ff6e40, #ff1744) 1; box-shadow: inset 0 0 20px rgba(255, 23, 68, 0.2), 0 0 20px rgba(255, 23, 68, 0.3); }
+        .hologram { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2)); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, 0.3); }
+        .slide-up { animation: slideUp 0.5s ease-out forwards; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(99, 102, 241, 0.05); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff1744, #ff6e40); border-radius: 4px; }
     </style>
 </head>
 
 <body class="h-full">
     <div id="app" class="h-full w-full text-white overflow-auto relative neural-grid">
         <div class="fixed inset-0 pointer-events-none">
-            <div
-                class="absolute top-10 left-1/4 w-72 h-72 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse">
-            </div>
-            <div
-                class="absolute top-40 right-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse">
-            </div>
-            <div
-                class="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse">
-            </div>
+            <div class="absolute top-10 left-1/4 w-72 h-72 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            <div class="absolute top-40 right-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
         </div>
 
         <div class="min-h-full w-full flex flex-col relative z-10">
@@ -164,40 +68,25 @@
                 <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
                     <div class="flex items-center gap-4">
                         <div class="relative">
-                            <div
-                                class="absolute inset-0 rounded-lg bg-gradient-to-r from-red-600 to-pink-600 blur-xl opacity-50">
-                            </div>
-                            <div
-                                class="relative w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center">
+                            <div class="absolute inset-0 rounded-lg bg-gradient-to-r from-red-600 to-pink-600 blur-xl opacity-50"></div>
+                            <div class="relative w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center">
                                 <svg class="w-7 h-7 drop-shadow-lg" fill="currentColor" viewbox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.752.75c.133.056.26.119.38.187a4.5 4.5 0 01-.88 8.828H5.5z"
-                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.752.75c.133.056.26.119.38.187a4.5 4.5 0 01-.88 8.828H5.5z" clip-rule="evenodd" />
                                 </svg>
                             </div>
                         </div>
                         <div>
-                            <h1 id="app-title"
-                                class="text-2xl font-black bg-gradient-to-r from-red-400 via-pink-400 to-orange-400 bg-clip-text text-transparent tracking-wider">
-                                NAARI SURAKSHA</h1>
-                            <p id="app-subtitle" class="text-xs text-cyan-400 tracking-widest font-mono">⚡ SECURITY
-                                SYSTEM ACTIVE</p>
+                            <h1 id="app-title" class="text-2xl font-black bg-gradient-to-r from-red-400 via-pink-400 to-orange-400 bg-clip-text text-transparent tracking-wider">NAARI SURAKSHA</h1>
+                            <p id="app-subtitle" class="text-xs text-cyan-400 tracking-widest font-mono">⚡ SECURITY SYSTEM ACTIVE</p>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-3">
-                        <button id="install-btn"
-                            class="hidden bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg shadow-green-500/30 hover:scale-105 transition-transform">
+                        <button id="install-btn" class="hidden bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg shadow-green-500/30 hover:scale-105 transition-transform">
                             📲 INSTALL APP
                         </button>
-
-                        <button id="cloud-settings-btn"
-                            class="p-1.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm border border-white/20 cursor-pointer">
-                            ⚙️
-                        </button>
-
-                        <select id="lang-selector"
-                            class="bg-black/40 border border-white/20 text-xs rounded-lg px-2 py-1.5 text-white outline-none cursor-pointer focus:border-red-500 transition-colors font-mono">
+                        <button id="cloud-settings-btn" class="p-1.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm border border-white/20 cursor-pointer">⚙️</button>
+                        <select id="lang-selector" class="bg-black/40 border border-white/20 text-xs rounded-lg px-2 py-1.5 text-white outline-none cursor-pointer focus:border-red-500 transition-colors font-mono">
                             <option value="en">English</option>
                             <option value="hi">हिंदी (Hindi)</option>
                             <option value="rj">राजस्थानी (Rajasthani)</option>
@@ -212,9 +101,7 @@
                             <option value="kn">ಕನ್ನಡ (Kannada)</option>
                             <option value="ml">മലയാളം (Malayalam)</option>
                         </select>
-
-                        <div id="location-status"
-                            class="flex items-center gap-2 px-4 py-2 rounded-lg cyber-border text-xs font-mono">
+                        <div id="location-status" class="flex items-center gap-2 px-4 py-2 rounded-lg cyber-border text-xs font-mono">
                             <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse"></span>
                             <span id="loc-status-text" class="text-yellow-400">INITIALIZING GPS...</span>
                         </div>
@@ -226,61 +113,37 @@
                 <div class="max-w-6xl mx-auto">
                     <section class="mb-8">
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                            <div
-                                class="lg:col-span-2 hologram rounded-3xl p-8 flex flex-col items-center justify-center min-h-96 cyber-border relative overflow-hidden group cursor-pointer">
-                                <div
-                                    class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                </div>
+                            <div class="lg:col-span-2 hologram rounded-3xl p-8 flex flex-col items-center justify-center min-h-96 cyber-border relative overflow-hidden group cursor-pointer">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 <div class="relative z-10 text-center">
-                                    <p id="sos-title"
-                                        class="text-red-400 text-sm font-mono tracking-widest mb-6 uppercase">Emergency
-                                        Alert System</p>
+                                    <p id="sos-title" class="text-red-400 text-sm font-mono tracking-widest mb-6 uppercase">Emergency Alert System</p>
                                     <button id="sos-btn" class="relative w-48 h-48 mb-6 group mx-auto">
-                                        <div
-                                            class="absolute inset-0 rounded-full border-2 border-red-500/30 sos-danger">
-                                        </div>
-                                        <div class="absolute inset-8 rounded-full border-2 border-red-500/60 sos-danger"
-                                            style="animation-delay: 0.3s;"></div>
-                                        <div class="absolute inset-16 rounded-full border-2 border-red-500/80 sos-danger"
-                                            style="animation-delay: 0.6s;"></div>
-                                        <div
-                                            class="absolute inset-0 rounded-full bg-gradient-to-br from-red-600 via-red-700 to-red-800 shadow-2xl shadow-red-600/50 flex flex-col items-center justify-center group-hover:shadow-red-500/80 transition-all duration-300 active:scale-95 cursor-pointer">
-                                            <svg class="w-16 h-16 mb-2 drop-shadow-lg" fill="currentColor"
-                                                viewbox="0 0 24 24">
-                                                <path
-                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+                                        <div class="absolute inset-0 rounded-full border-2 border-red-500/30 sos-danger"></div>
+                                        <div class="absolute inset-8 rounded-full border-2 border-red-500/60 sos-danger" style="animation-delay: 0.3s;"></div>
+                                        <div class="absolute inset-16 rounded-full border-2 border-red-500/80 sos-danger" style="animation-delay: 0.6s;"></div>
+                                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-red-600 via-red-700 to-red-800 shadow-2xl shadow-red-600/50 flex flex-col items-center justify-center group-hover:shadow-red-500/80 transition-all duration-300 active:scale-95 cursor-pointer">
+                                            <svg class="w-16 h-16 mb-2 drop-shadow-lg" fill="currentColor" viewbox="0 0 24 24">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
                                             </svg>
-                                            <span id="sos-text"
-                                                class="text-2xl font-black text-white drop-shadow-lg tracking-widest text-center px-2 leading-tight">TAP
-                                                FOR HELP</span>
+                                            <span id="sos-text" class="text-2xl font-black text-white drop-shadow-lg tracking-widest text-center px-2 leading-tight">TAP FOR HELP</span>
                                         </div>
                                     </button>
-                                    <p id="sos-desc" class="text-gray-400 text-xs font-mono px-4">Press and send SOS.
-                                        Background secret recording will start automatically.</p>
+                                    <p id="sos-desc" class="text-gray-400 text-xs font-mono px-4">Press and send SOS. Background secret recording will start automatically.</p>
                                 </div>
                             </div>
 
                             <div class="flex flex-col gap-6">
-                                <div
-                                    class="hologram rounded-2xl p-6 cyber-border h-44 flex flex-col justify-between group hover:shadow-lg hover:shadow-red-500/20 transition-all">
+                                <div class="hologram rounded-2xl p-6 cyber-border h-44 flex flex-col justify-between group hover:shadow-lg hover:shadow-red-500/20 transition-all">
                                     <div>
-                                        <p id="live-loc-title"
-                                            class="text-red-400 text-xs font-mono tracking-widest uppercase mb-2">📡
-                                            Live Location</p>
+                                        <p id="live-loc-title" class="text-red-400 text-xs font-mono tracking-widest uppercase mb-2">📡 Live Location</p>
                                         <div class="relative w-12 h-12 mb-3">
                                             <div class="absolute inset-0 rounded-full bg-red-500/30 gps-ping"></div>
-                                            <div
-                                                class="relative w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-lg font-bold">
-                                                📍</div>
+                                            <div class="relative w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-lg font-bold">📍</div>
                                         </div>
                                     </div>
                                     <div>
-                                        <p id="current-address" class="text-white text-xs font-mono leading-tight mb-2">
-                                            Detecting location...</p>
-                                        <p class="text-gray-500 text-xs font-mono">
-                                            <span id="lat-display">Lat: --</span> | <span id="lng-display">Lng:
-                                                --</span>
-                                        </p>
+                                        <p id="current-address" class="text-white text-xs font-mono leading-tight mb-2">Detecting location...</p>
+                                        <p class="text-gray-500 text-xs font-mono"><span id="lat-display">Lat: --</span> | <span id="lng-display">Lng: --</span></p>
                                     </div>
                                 </div>
 
@@ -288,17 +151,14 @@
                                     <div class="space-y-3">
                                         <div class="flex items-center justify-between text-xs">
                                             <span id="status-label" class="text-gray-400 font-mono">STATUS</span>
-                                            <span id="status-val"
-                                                class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full font-mono">ARMED</span>
+                                            <span id="status-val" class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full font-mono">ARMED</span>
                                         </div>
                                         <div class="flex items-center justify-between text-xs">
                                             <span id="gps-label" class="text-gray-400 font-mono">GPS SIGNAL</span>
-                                            <span id="gps-status-text"
-                                                class="text-yellow-400 font-mono">SEARCHING</span>
+                                            <span id="gps-status-text" class="text-yellow-400 font-mono">SEARCHING</span>
                                         </div>
                                         <div class="flex items-center justify-between text-xs">
-                                            <span id="media-label" class="text-gray-400 font-mono">MEDIA
-                                                PERMISSIONS</span>
+                                            <span id="media-label" class="text-gray-400 font-mono">MEDIA PERMISSIONS</span>
                                             <span id="media-status" class="text-yellow-400 font-mono">PENDING</span>
                                         </div>
                                     </div>
@@ -308,56 +168,42 @@
                     </section>
 
                     <section class="mb-8">
-                        <h2 id="tools-title" class="text-sm font-mono tracking-widest text-red-400 uppercase mb-6">⚔️
-                            Emergency Tools</h2>
+                        <h2 id="tools-title" class="text-sm font-mono tracking-widest text-red-400 uppercase mb-6">⚔️ Emergency Tools</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <button id="location-btn"
-                                class="hologram rounded-2xl p-6 cyber-border group hover:shadow-cyan-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
-                                <div
-                                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <button id="location-btn" class="hologram rounded-2xl p-6 cyber-border group hover:shadow-cyan-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
+                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                                     <svg class="w-7 h-7 text-cyan-400" fill="currentColor" viewbox="0 0 24 24">
-                                        <path
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     </svg>
                                 </div>
                                 <p id="btn-loc-title" class="font-bold text-white text-sm mb-1">LIVE LOCATION</p>
                                 <p id="btn-loc-desc" class="text-xs text-gray-400">Stream & Share</p>
                             </button>
 
-                            <button id="fakecall-btn"
-                                class="hologram rounded-2xl p-6 cyber-border group hover:shadow-green-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
-                                <div
-                                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <button id="fakecall-btn" class="hologram rounded-2xl p-6 cyber-border group hover:shadow-green-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
+                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                                     <svg class="w-7 h-7 text-green-400" fill="currentColor" viewbox="0 0 24 24">
-                                        <path
-                                            d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                                     </svg>
                                 </div>
                                 <p id="btn-call-title" class="font-bold text-white text-sm mb-1">FAKE CALL</p>
                                 <p id="btn-call-desc" class="text-xs text-gray-400">Escape Safely</p>
                             </button>
 
-                            <button id="record-btn"
-                                class="hologram rounded-2xl p-6 cyber-border group hover:shadow-purple-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
-                                <div
-                                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-violet-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <button id="record-btn" class="hologram rounded-2xl p-6 cyber-border group hover:shadow-purple-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
+                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-violet-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                                     <svg class="w-7 h-7 text-purple-400" fill="currentColor" viewbox="0 0 24 24">
-                                        <path
-                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                                     </svg>
                                 </div>
-                                <p id="btn-rec-title" class="font-bold text-white text-sm mb-1 text-center">RECORD
-                                    EVIDENCE</p>
+                                <p id="btn-rec-title" class="font-bold text-white text-sm mb-1 text-center">RECORD EVIDENCE</p>
                                 <p id="btn-rec-desc" class="text-xs text-gray-400">Audio & Video Proof</p>
                             </button>
 
-                            <button id="history-btn"
-                                class="hologram rounded-2xl p-6 cyber-border group hover:shadow-orange-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
-                                <div
-                                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <button id="history-btn" class="hologram rounded-2xl p-6 cyber-border group hover:shadow-orange-500/50 transition-all cursor-pointer h-40 flex flex-col items-center justify-center">
+                                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-600/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                                     <svg class="w-7 h-7 text-orange-400" fill="currentColor" viewbox="0 0 24 24">
-                                        <path
-                                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7h-3v3H9v-3H6v-2h3V6h2v3h3v2z" />
+                                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7h-3v3H9v-3H6v-2h3V6h2v3h3v2z" />
                                     </svg>
                                 </div>
                                 <p id="btn-hist-title" class="font-bold text-white text-sm mb-1">LOCATION HISTORY</p>
@@ -367,34 +213,24 @@
                     </section>
 
                     <section class="mb-8">
-                        <h2 class="text-sm font-mono tracking-widest text-red-400 uppercase mb-4">🚨 National Helplines
-                        </h2>
+                        <h2 class="text-sm font-mono tracking-widest text-red-400 uppercase mb-4">🚨 National Helplines</h2>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <a href="tel:112"
-                                class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-red-500/50 transition-all cursor-pointer">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-red-500/30 flex items-center justify-center text-xl">
-                                    🆘</div>
+                            <a href="tel:112" class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-red-500/50 transition-all cursor-pointer">
+                                <div class="w-12 h-12 rounded-full bg-red-500/30 flex items-center justify-center text-xl">🆘</div>
                                 <div>
                                     <p class="font-bold text-sm text-white">National Emergency</p>
                                     <p class="text-xl text-red-400 font-black">112</p>
                                 </div>
                             </a>
-                            <a href="tel:100"
-                                class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-blue-500/50 transition-all cursor-pointer">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-blue-500/30 flex items-center justify-center text-xl">
-                                    🚓</div>
+                            <a href="tel:100" class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-blue-500/50 transition-all cursor-pointer">
+                                <div class="w-12 h-12 rounded-full bg-blue-500/30 flex items-center justify-center text-xl">🚓</div>
                                 <div>
                                     <p class="font-bold text-sm text-white">Police</p>
                                     <p class="text-xl text-blue-400 font-black">100</p>
                                 </div>
                             </a>
-                            <a href="tel:181"
-                                class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-pink-500/50 transition-all cursor-pointer">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center text-xl">
-                                    🛡️</div>
+                            <a href="tel:181" class="hologram rounded-2xl p-4 cyber-border flex items-center gap-4 hover:shadow-pink-500/50 transition-all cursor-pointer">
+                                <div class="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center text-xl">🛡️</div>
                                 <div>
                                     <p class="font-bold text-sm text-white">Women Helpline</p>
                                     <p class="text-xl text-pink-400 font-black">181</p>
@@ -404,32 +240,23 @@
                     </section>
 
                     <section class="mb-8">
-                        <h2 id="contacts-title" class="text-sm font-mono tracking-widest text-red-400 uppercase mb-4">🔌
-                            Emergency Contacts</h2>
+                        <h2 id="contacts-title" class="text-sm font-mono tracking-widest text-red-400 uppercase mb-4">🔌 Emergency Contacts</h2>
                         <div class="hologram rounded-2xl p-6 cyber-border">
                             <div class="grid grid-cols-2 gap-4">
-                                <div id="contact-1-card"
-                                    class="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl p-4 border border-blue-500/20 cursor-pointer hover:bg-blue-500/20 transition-colors">
-                                    <p id="contact-1-label" class="text-xs text-gray-400 font-mono mb-2">PRIMARY CONTACT
-                                    </p>
+                                <div id="contact-1-card" class="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl p-4 border border-blue-500/20 cursor-pointer hover:bg-blue-500/20 transition-colors">
+                                    <p id="contact-1-label" class="text-xs text-gray-400 font-mono mb-2">PRIMARY CONTACT</p>
                                     <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-lg bg-blue-500/30 flex items-center justify-center text-lg">
-                                            👨</div>
+                                        <div class="w-10 h-10 rounded-lg bg-blue-500/30 flex items-center justify-center text-lg">👨</div>
                                         <div>
                                             <p id="contact-1-name" class="font-bold text-sm">Papa</p>
                                             <p class="text-xs text-cyan-400 font-bold" id="c1-ready">TAP TO CALL</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="contact-2-card"
-                                    class="bg-gradient-to-br from-pink-500/10 to-red-500/10 rounded-xl p-4 border border-pink-500/20 cursor-pointer hover:bg-pink-500/20 transition-colors">
-                                    <p id="contact-2-label" class="text-xs text-gray-400 font-mono mb-2">SECONDARY
-                                        CONTACT</p>
+                                <div id="contact-2-card" class="bg-gradient-to-br from-pink-500/10 to-red-500/10 rounded-xl p-4 border border-pink-500/20 cursor-pointer hover:bg-pink-500/20 transition-colors">
+                                    <p id="contact-2-label" class="text-xs text-gray-400 font-mono mb-2">SECONDARY CONTACT</p>
                                     <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-lg bg-pink-500/30 flex items-center justify-center text-lg">
-                                            👩</div>
+                                        <div class="w-10 h-10 rounded-lg bg-pink-500/30 flex items-center justify-center text-lg">👩</div>
                                         <div>
                                             <p id="contact-2-name" class="font-bold text-sm">Mummy</p>
                                             <p class="text-xs text-pink-400 font-bold" id="c2-ready">TAP TO CALL</p>
@@ -447,11 +274,6 @@
             </footer>
         </div>
 
-        <button id="secret-stop-btn"
-            class="hidden fixed bottom-6 right-6 z-[999] bg-red-600 text-white px-6 py-4 rounded-full shadow-2xl font-black text-sm animate-pulse border-2 border-white cursor-pointer hover:scale-105 transition-transform">
-            🛑 STOP SECRET RECORDING
-        </button>
-
         <div id="cloud-settings-modal" class="fixed inset-0 z-[60] hidden">
             <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
             <div class="relative h-full flex flex-col items-center justify-center p-6 slide-up">
@@ -461,34 +283,28 @@
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label class="text-[10px] text-gray-400 mb-1 block">Primary Name</label>
-                                <input id="cloud-n1" type="text" placeholder="Papa"
-                                    class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-3 text-white outline-none focus:border-red-500 text-sm transition-colors">
+                                <input id="cloud-n1" type="text" placeholder="Papa" class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-3 text-white outline-none focus:border-red-500 text-sm transition-colors">
                             </div>
                             <div>
                                 <label class="text-[10px] text-gray-400 mb-1 block">Phone Number</label>
-                                <input id="cloud-p1" type="tel" placeholder="+91..."
-                                    class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-3 text-white outline-none focus:border-red-500 text-sm transition-colors">
+                                <input id="cloud-p1" type="tel" placeholder="+91..." class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-3 text-white outline-none focus:border-red-500 text-sm transition-colors">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label class="text-[10px] text-gray-400 mb-1 block">Secondary Name</label>
-                                <input id="cloud-n2" type="text" placeholder="Mummy"
-                                    class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-3 text-white outline-none focus:border-red-500 text-sm transition-colors">
+                                <input id="cloud-n2" type="text" placeholder="Mummy" class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-3 text-white outline-none focus:border-red-500 text-sm transition-colors">
                             </div>
                             <div>
                                 <label class="text-[10px] text-gray-400 mb-1 block">Phone Number</label>
-                                <input id="cloud-p2" type="tel" placeholder="+91..."
-                                    class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-3 text-white outline-none focus:border-red-500 text-sm transition-colors">
+                                <input id="cloud-p2" type="tel" placeholder="+91..." class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-3 text-white outline-none focus:border-red-500 text-sm transition-colors">
                             </div>
                         </div>
-                        <button onclick="forceSave()"
-                            class="mt-2 w-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-red-500/50 transition-all active:scale-95 tracking-widest cursor-pointer">
+                        <button onclick="forceSave()" class="mt-2 w-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-red-500/50 transition-all active:scale-95 tracking-widest cursor-pointer">
                             SAVE TO SYSTEM
                         </button>
                     </div>
-                    <button onclick="document.getElementById('cloud-settings-modal').classList.add('hidden')"
-                        class="mt-4 w-full py-3 text-gray-400 hover:text-white transition-colors cursor-pointer font-bold">Cancel</button>
+                    <button onclick="document.getElementById('cloud-settings-modal').classList.add('hidden')" class="mt-4 w-full py-3 text-gray-400 hover:text-white transition-colors cursor-pointer font-bold">Cancel</button>
                 </div>
             </div>
         </div>
@@ -499,39 +315,25 @@
                 <div class="hologram rounded-3xl p-6 w-full max-w-sm cyber-border">
                     <h3 id="modal-call-title" class="text-center text-lg font-semibold mb-6">Choose Caller</h3>
                     <div class="flex flex-col gap-4">
-                        <button id="call-papa"
-                            class="flex items-center gap-4 p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all cursor-pointer">
-                            <div
-                                class="w-14 h-14 rounded-full bg-blue-500/30 flex items-center justify-center text-2xl">
-                                👨</div>
-                            <div class="text-left">
-                                <p id="caller-papa-name" class="font-semibold">Papa</p>
-                            </div>
+                        <button id="call-papa" class="flex items-center gap-4 p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all cursor-pointer">
+                            <div class="w-14 h-14 rounded-full bg-blue-500/30 flex items-center justify-center text-2xl">👨</div>
+                            <div class="text-left"><p id="caller-papa-name" class="font-semibold">Papa</p></div>
                         </button>
-                        <button id="call-mummy"
-                            class="flex items-center gap-4 p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all cursor-pointer">
-                            <div
-                                class="w-14 h-14 rounded-full bg-pink-500/30 flex items-center justify-center text-2xl">
-                                👩</div>
-                            <div class="text-left">
-                                <p id="caller-mummy-name" class="font-semibold">Mummy</p>
-                            </div>
+                        <button id="call-mummy" class="flex items-center gap-4 p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all cursor-pointer">
+                            <div class="w-14 h-14 rounded-full bg-pink-500/30 flex items-center justify-center text-2xl">👩</div>
+                            <div class="text-left"><p id="caller-mummy-name" class="font-semibold">Mummy</p></div>
                         </button>
                     </div>
-                    <button id="close-fakecall-modal"
-                        class="mt-6 w-full py-3 text-gray-400 hover:text-white transition-colors cursor-pointer">Cancel</button>
+                    <button id="close-fakecall-modal" class="mt-6 w-full py-3 text-gray-400 hover:text-white transition-colors cursor-pointer">Cancel</button>
                 </div>
             </div>
         </div>
 
-        <div id="call-screen" class="fixed inset-0 z-50 hidden"
-            style="background: linear-gradient(180deg, #1e3a5f 0%, #0d1b2a 100%);">
+        <div id="call-screen" class="fixed inset-0 z-50 hidden" style="background: linear-gradient(180deg, #1e3a5f 0%, #0d1b2a 100%);">
             <div class="h-full flex flex-col items-center justify-between py-12 px-6">
                 <div class="text-center">
                     <p id="inc-call-txt" class="text-gray-400 text-sm mb-2">Incoming call</p>
-                    <div id="caller-avatar"
-                        class="w-28 h-28 rounded-full bg-blue-500/30 flex items-center justify-center text-5xl mx-auto mb-4"
-                        style="animation: gps-pulse 1.5s infinite;">👨</div>
+                    <div id="caller-avatar" class="w-28 h-28 rounded-full bg-blue-500/30 flex items-center justify-center text-5xl mx-auto mb-4" style="animation: gps-pulse 1.5s infinite;">👨</div>
                     <h2 id="caller-name-display" class="text-3xl font-bold mb-1">Papa</h2>
                     <p class="text-gray-400">Mobile</p>
                 </div>
@@ -540,19 +342,11 @@
                     <p id="call-timer" class="text-4xl font-light text-white mt-2">00:00</p>
                 </div>
                 <div class="flex gap-8">
-                    <button id="decline-call"
-                        class="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer">
-                        <svg class="w-8 h-8 rotate-[135deg]" fill="currentColor" viewbox="0 0 24 24">
-                            <path
-                                d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
-                        </svg>
+                    <button id="decline-call" class="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer">
+                        <svg class="w-8 h-8 rotate-[135deg]" fill="currentColor" viewbox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" /></svg>
                     </button>
-                    <button id="accept-call"
-                        class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center hover:bg-green-600 transition-colors cursor-pointer">
-                        <svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24">
-                            <path
-                                d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
-                        </svg>
+                    <button id="accept-call" class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center hover:bg-green-600 transition-colors cursor-pointer">
+                        <svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" /></svg>
                     </button>
                 </div>
             </div>
@@ -563,49 +357,36 @@
             <div class="relative h-full flex flex-col items-center justify-center p-6">
                 <div class="hologram rounded-3xl p-6 w-full max-w-sm cyber-border slide-up">
                     <h3 id="modal-rec-title" class="text-center text-lg font-semibold mb-2">Record Evidence</h3>
-                    <p id="modal-rec-desc" class="text-center text-sm text-gray-400 mb-6">Audio & video will be saved as
-                        proof</p>
+                    <p id="modal-rec-desc" class="text-center text-sm text-gray-400 mb-6">Audio & video will be saved locally.</p>
+                    
                     <div id="recording-status" class="hidden mb-6">
                         <div class="flex items-center justify-center gap-2 mb-4">
-                            <span class="w-3 h-3 rounded-full bg-red-500"
-                                style="animation: recording-pulse 1s ease-in-out infinite;"></span>
-                            <span id="rec-active-txt" class="text-red-400 font-medium">Recording</span>
+                            <span class="w-3 h-3 rounded-full bg-red-500" style="animation: recording-pulse 1s ease-in-out infinite;"></span>
+                            <span id="rec-active-txt" class="text-red-400 font-medium">Recording in Progress</span>
                         </div>
                         <div id="recording-timer" class="text-4xl font-light text-center">00:00</div>
                     </div>
+                    
                     <div id="video-preview" class="hidden mb-4 rounded-xl overflow-hidden bg-black aspect-video">
                         <video id="preview-video" autoplay muted playsinline class="w-full h-full object-cover"></video>
                     </div>
+                    
                     <div class="flex flex-col gap-3">
-                        <button id="start-audio-record"
-                            class="flex items-center justify-center gap-3 p-4 bg-purple-500/20 rounded-xl hover:bg-purple-500/30 transition-all cursor-pointer">
-                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                            </svg>
+                        <button id="start-audio-record" class="flex items-center justify-center gap-3 p-4 bg-purple-500/20 rounded-xl hover:bg-purple-500/30 transition-all cursor-pointer">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
                             <span id="btn-aud-txt" class="font-medium">Record Audio</span>
                         </button>
-                        <button id="start-video-record"
-                            class="flex items-center justify-center gap-3 p-4 bg-violet-500/20 rounded-xl hover:bg-violet-500/30 transition-all cursor-pointer">
-                            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
+                        
+                        <button id="start-video-record" class="flex items-center justify-center gap-3 p-4 bg-violet-500/20 rounded-xl hover:bg-violet-500/30 transition-all cursor-pointer">
+                            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                             <span id="btn-vid-txt" class="font-medium">Record Video</span>
                         </button>
-                        <button id="stop-record"
-                            class="hidden items-center justify-center gap-3 p-4 bg-red-500/20 rounded-xl hover:bg-red-500/30 transition-all cursor-pointer">
-                            <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
-                            </svg>
-                            <span id="btn-stop-txt" class="font-medium">Stop & Save</span>
+                        
+                        <button id="stop-record" class="hidden items-center justify-center gap-3 p-4 bg-red-600 rounded-xl hover:bg-red-700 transition-all cursor-pointer shadow-lg shadow-red-500/50">
+                            <span id="btn-stop-txt" class="font-bold text-white tracking-wider">🛑 STOP & SAVE LOCALLY</span>
                         </button>
                     </div>
-                    <button id="close-record-modal"
-                        class="mt-6 w-full py-3 text-gray-400 hover:text-white transition-colors cursor-pointer">Close</button>
+                    <button id="close-record-modal" class="mt-6 w-full py-3 text-gray-400 hover:text-white transition-colors cursor-pointer">Close Menu</button>
                 </div>
             </div>
         </div>
@@ -616,32 +397,22 @@
                 <div class="hologram rounded-3xl p-6 w-full max-w-lg mx-auto cyber-border slide-up">
                     <div class="flex items-center justify-between mb-6">
                         <h3 id="modal-hist-title" class="text-lg font-semibold">📍 Location History</h3>
-                        <button id="close-history-modal"
-                            class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 cursor-pointer">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
+                        <button id="close-history-modal" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 cursor-pointer">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                         </button>
                     </div>
                     <div id="history-list" class="flex flex-col gap-3 max-h-96 overflow-auto">
                         <p class="text-gray-400 text-sm text-center py-8">No location history yet</p>
                     </div>
-                    <button id="clear-history"
-                        class="mt-4 w-full py-3 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 transition-colors cursor-pointer">Clear
-                        All History</button>
+                    <button id="clear-history" class="mt-4 w-full py-3 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 transition-colors cursor-pointer">Clear All History</button>
                 </div>
             </div>
         </div>
 
-        <div id="toast" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden">
-            <div class="hologram rounded-full px-6 py-3 flex items-center gap-3 slide-up cyber-border">
-                <span class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                </span>
-                <span id="toast-message" class="font-medium text-sm">Location sent!</span>
+        <div id="toast" class="fixed top-4 left-1/2 -translate-x-1/2 z-[100] hidden">
+            <div class="hologram rounded-full px-6 py-3 flex items-center gap-3 slide-up cyber-border bg-[#0d1628]">
+                <span class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold">✓</span>
+                <span id="toast-message" class="font-medium text-sm text-green-400">Action Complete</span>
             </div>
         </div>
     </div>
@@ -656,84 +427,19 @@
 
         // --- TRANSLATION DICTIONARY ---
         const i18n = {
-            en: {
-                subtitle: "⚡ SECURITY SYSTEM ACTIVE", sosTitle: "Emergency Alert System", sosBtn: "TAP FOR HELP", sosDesc: "Press and send SOS. Background secret recording will start automatically.",
-                liveLoc: "📡 Live Location", detecting: "Detecting location...", status: "STATUS", armed: "ARMED", gpsSig: "GPS SIGNAL", mediaPerm: "MEDIA PERMISSIONS",
-                tools: "⚔️ Emergency Tools", btnLoc: "LIVE LOCATION", btnLocDesc: "Stream & Share", btnCall: "FAKE CALL", btnCallDesc: "Escape Safely", btnRec: "RECORD EVIDENCE", btnRecDesc: "Audio & Video Proof", btnHist: "LOCATION HISTORY", btnHistDesc: "View Timeline",
-                contacts: "🔌 Emergency Contacts", primary: "PRIMARY CONTACT", secondary: "SECONDARY CONTACT", ready: "TAP TO CALL", footer: "🔐 ENCRYPTED | 🛡️ SECURE | ⚡ REAL-TIME"
-            },
-            hi: {
-                subtitle: "⚡ सुरक्षा प्रणाली सक्रिय", sosTitle: "आपातकालीन अलर्ट सिस्टम", sosBtn: "मदद के लिए दबाएं", sosDesc: "SOS भेजें। गुप्त रिकॉर्डिंग अपने आप शुरू हो जाएगी।",
-                liveLoc: "📡 लाइव लोकेशन", detecting: "लोकेशन खोज रहा है...", status: "स्थिति", armed: "सक्रिय", gpsSig: "जीपीएस सिग्नल", mediaPerm: "मीडिया अनुमतियां",
-                tools: "⚔️ आपातकालीन उपकरण", btnLoc: "लाइव लोकेशन", btnLocDesc: "स्ट्रीम और साझा करें", btnCall: "फर्जी कॉल", btnCallDesc: "सुरक्षित बचें", btnRec: "सबूत रिकॉर्ड करें", btnRecDesc: "ऑडियो/वीडियो प्रमाण", btnHist: "लोकेशन का इतिहास", btnHistDesc: "टाइमलाइन देखें",
-                contacts: "🔌 आपातकालीन संपर्क", primary: "प्राथमिक संपर्क", secondary: "द्वितीयक संपर्क", ready: "कॉल करें", footer: "🔐 एन्क्रिप्टेड | 🛡️ सुरक्षित | ⚡ वास्तविक समय"
-            },
-            rj: {
-                subtitle: "⚡ सुरक्षा सिस्टम चालू", sosTitle: "इमरजेंसी अलर्ट सिस्टम", sosBtn: "मदद खातिर दबाओ", sosDesc: "SOS भेजो। गुप्त रिकॉर्डिंग अपने आप शुरू होवेगी।",
-                liveLoc: "📡 लाइव लोकेशन", detecting: "लोकेशन ढूंढे है...", status: "स्थिति", armed: "चालू", gpsSig: "GPS सिग्नल", mediaPerm: "मीडिया परमिशन",
-                tools: "⚔️ इमरजेंसी टूल", btnLoc: "लाइव लोकेशन", btnLocDesc: "शेयर करो", btnCall: "फर्जी कॉल", btnCallDesc: "सुरक्षित बचो", btnRec: "सबूत रिकॉर्ड", btnRecDesc: "ऑडियो/वीडियो", btnHist: "लोकेशन हिस्ट्री", btnHistDesc: "टाइमलाइन देखो",
-                contacts: "🔌 इमरजेंसी संपर्क", primary: "पहलो संपर्क", secondary: "दूजो संपर्क", ready: "कॉल करां", footer: "🔐 सुरक्षित | ⚡ रियल-टाइम"
-            },
-            pa: {
-                subtitle: "⚡ ਸੁਰੱਖਿਆ ਸਿਸਟਮ ਸਰਗਰਮ", sosTitle: "ਐਮਰਜੈਂਸੀ ਅਲਰਟ ਸਿਸਟਮ", sosBtn: "ਮਦਦ ਲਈ ਦਬਾਓ", sosDesc: "SOS ਭੇਜੋ। ਗੁਪਤ ਰਿਕਾਰਡਿੰਗ ਆਪਣੇ ਆਪ ਸ਼ੁਰੂ ਹੋ ਜਾਵੇਗੀ।",
-                liveLoc: "📡 ਲਾਈਵ ਲੋਕੇਸ਼ਨ", detecting: "ਲੋਕੇਸ਼ਨ ਲੱਭ ਰਿਹਾ ਹੈ...", status: "ਸਥਿਤੀ", armed: "ਸਰਗਰਮ", gpsSig: "GPS ਸਿਗਨਲ", mediaPerm: "ਮੀਡੀਆ ਇਜਾਜ਼ਤਾਂ",
-                tools: "⚔️ ਐਮਰਜੈਂਸੀ ਟੂਲ", btnLoc: "ਲਾਈਵ ਲੋਕੇਸ਼ਨ", btnLocDesc: "ਸ਼ੇਅਰ ਕਰੋ", btnCall: "ਫਰਜ਼ੀ ਕਾਲ", btnCallDesc: "ਸੁਰੱਖਿਅਤ ਬਚੋ", btnRec: "ਸਬੂਤ ਰਿਕਾਰਡ", btnRecDesc: "ਆਡੀਓ/ਵੀਡੀਓ", btnHist: "ਲੋਕੇਸ਼ਨ ਇਤਿਹਾਸ", btnHistDesc: "ਟਾਈਮਲਾਈਨ ਦੇਖੋ",
-                contacts: "🔌 ਸੰਪਰਕ", primary: "ਪਹਿਲਾ ਸੰਪਰਕ", secondary: "ਦੂਜਾ ਸੰਪਰਕ", ready: "ਕਾਲ ਕਰੋ", footer: "🔐 ਸੁਰੱਖਿਅਤ | ⚡ ਰੀਅਲ-ਟਾਈਮ"
-            },
-            gu: {
-                subtitle: "⚡ સુરક્ષા સિસ્ટમ સક્રિય", sosTitle: "કટોકટી ચેતવણી સિસ્ટમ", sosBtn: "મદદ માટે દબાવો", sosDesc: "SOS મોકલો. ગુપ્ત રેકોર્ડિંગ આપમેળે શરૂ થશે.",
-                liveLoc: "📡 લાઇવ લોકેશન", detecting: "લોकेशन શોધી રહ્યું છે...", status: "સ્થિતિ", armed: "સક્રિય", gpsSig: "જીપીએસ સિગ્નલ", mediaPerm: "મીડિયા પરવાનગીઓ",
-                tools: "⚔️ કટોકટીનાં સાધનો", btnLoc: "લાઇવ લોકેશન", btnLocDesc: "સ્ટ્રીમ અને શેર કરો", btnCall: "નકલી કૉલ", btnCallDesc: "સલામત બચો", btnRec: "પુરાવા રેકોર્ડ", btnRecDesc: "ઓડિયો/વિડિયો", btnHist: "લોકેશન ઇતિહાસ", btnHistDesc: "ટાઇમલાઇન જુઓ",
-                contacts: "🔌 કટોકટી સંપર્કો", primary: "પ્રાથમિક સંપર્ક", secondary: "ગૌણ સંપર્ક", ready: "કૉલ કરો", footer: "🔐 એન્ક્રિપ્ટેડ | 🛡️ સુરક્ષિત"
-            },
-            mr: {
-                subtitle: "⚡ सुरक्षा प्रणाली सक्रिय", sosTitle: "आणीबाणी अलर्ट सिस्टम", sosBtn: "मदतीसाठी दाबा", sosDesc: "SOS पाठवा. गुप्त रेकॉर्डिंग आपोआप सुरू होईल.",
-                liveLoc: "📡 लाईव्ह लोकेशन", detecting: "लोकेशन शोधत आहे...", status: "स्थिती", armed: "सक्रिय", gpsSig: "जीपीएस सिग्नल", mediaPerm: "मीडिया परवानग्या",
-                tools: "⚔️ आपत्कालीन साधने", btnLoc: "लाईव्ह लोकेशन", btnLocDesc: "स्ट्रीम आणि शेअर करा", btnCall: "खोटा कॉल", btnCallDesc: "सुरक्षित सुटका", btnRec: "पुरावा रेकॉर्ड", btnRecDesc: "ऑडिओ/व्हिडिओ", btnHist: "लोकेशन इतिहास", btnHistDesc: "टाइमलाइन पहा",
-                contacts: "🔌 आपत्कालीन संपर्क", primary: "प्राथमिक संपर्क", secondary: "दुय्यम संपर्क", ready: "कॉल करा", footer: "🔐 एनक्रिप्टेड | 🛡️ सुरक्षित"
-            },
-            bn: {
-                subtitle: "⚡ নিরাপত্তা ব্যবস্থা সক্রিয়", sosTitle: "জরুরী সতর্কতা", sosBtn: "সাহায্যের জন্য টিপুন", sosDesc: "SOS পাঠান। গোপন রেকর্ডিং স্বয়ংক্রিয়ভাবে শুরু হবে।",
-                liveLoc: "📡 লাইভ লোকেশন", detecting: "লোকেশন খোঁজা হচ্ছে...", status: "অবস্থা", armed: "সক্রিয়", gpsSig: "জিপিএস সংকেত", mediaPerm: "মিডিয়া অনুমতি",
-                tools: "⚔️ জরুরী সরঞ্জাম", btnLoc: "লাইভ লোকেশন", btnLocDesc: "শেয়ার করুন", btnCall: "ভুয়া কল", btnCallDesc: "নিরাপদে পালান", btnRec: "প্রমাণ রেকর্ড", btnRecDesc: "অডিও/ভিডিও", btnHist: "লোকেশন ইতিহাস", btnHistDesc: "টাইমলাইন দেখুন",
-                contacts: "🔌 পরিচিতি", primary: "প্রাথমিক যোগাযোগ", secondary: "মাধ্যমিক যোগাযোগ", ready: "কল করুন", footer: "🔐 এনক্রিপ্ট করা | 🛡️ নিরাপদ"
-            },
-            or: {
-                subtitle: "⚡ ସୁରକ୍ଷା ବ୍ୟବସ୍ଥା ସକ୍ରିୟ", sosTitle: "ଜରୁରୀକାଳୀନ ଆଲର୍ଟ", sosBtn: "ସାହାଯ୍ୟ ପାଇଁ ଦବାନ୍ତୁ", sosDesc: "SOS ପଠାନ୍ତୁ। ଗୁପ୍ତ ରେକର୍ଡିଂ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଆରମ୍ଭ ହେବ।",
-                liveLoc: "📡 ଲାଇଭ୍ ଲୋକେସନ୍", detecting: "ଲୋକେସନ୍ ଖୋଜୁଛି...", status: "ସ୍ଥିତି", armed: "ସକ୍ରିୟ", gpsSig: "GPS ସିଗନାଲ୍", mediaPerm: "ମିଡିଆ ଅନୁମତି",
-                tools: "⚔️ ଜରୁରୀକାଳୀନ ଉପକରଣ", btnLoc: "ଲାଇଭ୍ ଲୋକେସନ୍", btnLocDesc: "ସେୟାର କରନ୍ତୁ", btnCall: "ନକଲି କଲ୍", btnCallDesc: "ସୁରକ୍ଷିତ ରୁହନ୍ତୁ", btnRec: "ପ୍ରମାଣ ରେକର୍ଡ", btnRecDesc: "ଅଡିଓ/ଭିଡିଓ", btnHist: "ଲୋକେସନ୍ ଇତିହାସ", btnHistDesc: "ଟାଇମଲାଇନ୍ ଦେଖନ୍ତୁ",
-                contacts: "🔌 ସମ୍ପର୍କ", primary: "ପ୍ରାଥମିକ ସମ୍ପର୍କ", secondary: "ଦ୍ଵିତୀୟ ସମ୍ପର୍କ", ready: "କଲ୍ କରନ୍ତୁ", footer: "🔐 ସୁରକ୍ଷିତ | ⚡ ରିଅଲ୍-ଟାଇମ୍"
-            },
-            as: {
-                subtitle: "⚡ সুৰক্ষা ব্যৱস্থা সক্ৰিয়", sosTitle: "জৰুৰীকালীন এলাৰ্ট", sosBtn: "সহায়ৰ বাবে টিপক", sosDesc: "SOS পঠাওক। গোপন ৰেকৰ্ডিং স্বয়ংক্ৰিয়ভাৱে আৰম্ভ হ'ব।",
-                liveLoc: "📡 লাইভ লোকেশ্বন", detecting: "বিচাৰি থকা হৈছে...", status: "স্থিতি", armed: "সক্ৰিয়", gpsSig: "GPS ছিগনেল", mediaPerm: "মিডিয়া অনুমতি",
-                tools: "⚔️ জৰুৰী সঁজুলি", btnLoc: "লাইভ লোকেশ্বন", btnLocDesc: "শ্বেয়াৰ কৰক", btnCall: "ভুৱা কল", btnCallDesc: "সুৰক্ষিত পলায়ন", btnRec: "প্ৰমাণ ৰেকৰ্ড", btnRecDesc: "অডিঅ'/ভিডিঅ'", btnHist: "অৱস্থান ইতিহাস", btnHistDesc: "টাইমলাইন চাওক",
-                contacts: "🔌 জৰুৰী সম্পৰ্ক", primary: "প্ৰাথমিক সম্পৰ্ক", secondary: "দ্বিতীয় সম্পৰ্ক", ready: "কল কৰক", footer: "🔐 সুৰক্ষিত | ⚡ ৰিয়েল-টাইম"
-            },
-            te: {
-                subtitle: "⚡ భద్రతా వ్యవస్థ సక్రియం", sosTitle: "అత్యవసర హెచ్చరిక", sosBtn: "సహాయం కోసం నొక్కండి", sosDesc: "SOS పంపండి. రహస్య రికార్డింగ్ స్వయంచాలకంగా ప్రారంభమవుతుంది.",
-                liveLoc: "📡 లైవ్ లొకేషన్", detecting: "లొకేషన్ కనుగొనబడుతోంది...", status: "స్థితి", armed: "సక్రియం", gpsSig: "GPS సిగ్నల్", mediaPerm: "మీడియా అనుమతులు",
-                tools: "⚔️ అత్యవసర సాధనాలు", btnLoc: "లైవ్ లొకేషన్", btnLocDesc: "షేర్ చేయండి", btnCall: "నకిలీ కాల్", btnCallDesc: "సురక్షితంగా తప్పించుకోండి", btnRec: "ఆధారం రికార్డ్", btnRecDesc: "ఆడియో/వీడియో", btnHist: "లొకేషన్ చరిత్ర", btnHistDesc: "టైమ్‌లైన్ చూడండి",
-                contacts: "🔌 పరిచయాలు", primary: "ప్రాథమిక పరిచయం", secondary: "ద్వితీయ పరిచయం", ready: "కాల్ చేయండి", footer: "🔐 సురక్షితం | 🛡️ ఎన్‌క్రిప్ట్"
-            },
-            ta: {
-                subtitle: "⚡ பாதுகாப்பு அமைப்பு செயலில் உள்ளது", sosTitle: "அவசர எச்சரிக்கை", sosBtn: "உதவிக்கு அழுத்தவும்", sosDesc: "SOS ஐ அனுப்பவும். ரகசிய பதிவு தானாகவே தொடங்கும்.",
-                liveLoc: "📡 நேரலை இருப்பிடம்", detecting: "இருப்பிடம் தேடப்படுகிறது...", status: "நிலை", armed: "தயார்", gpsSig: "ஜிபிஎஸ் சிக்னல்", mediaPerm: "ஊடக அனுமதிகள்",
-                tools: "⚔️ அவசர கருவிகள்", btnLoc: "நேரலை இருப்பிடம்", btnLocDesc: "பகிரவும்", btnCall: "போலி அழைப்பு", btnCallDesc: "பாதுகாப்பாக தப்பிக்க", btnRec: "ஆதாரம் பதிவு", btnRecDesc: "ஆடியோ/வீడియో", btnHist: "இருப்பிட வரலாறு", btnHistDesc: "வரலாற்றைப் காண்க",
-                contacts: "🔌 தொடர்புகள்", primary: "முதன்மை தொடர்பு", secondary: "இரண்டாம் நிலை தொடர்பு", ready: "அழைக்க", footer: "🔐 பாதுகாப்பானது | 🛡️ என்க்ரிப்ட்"
-            },
-            kn: {
-                subtitle: "⚡ ಭದ್ರತಾ ವ್ಯವಸ್ಥೆ ಸಕ್ರಿಯ", sosTitle: "ತುರ್ತು ಎಚ್ಚರಿಕೆ", sosBtn: "ಸಹಾಯಕ್ಕಾಗಿ ಒತ್ತಿರಿ", sosDesc: "SOS ಕಳುಹಿಸಿ. ರಹಸ್ಯ ರೆಕಾರ್ಡಿಂಗ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ.",
-                liveLoc: "📡 ಲೈವ್ ಸ್ಥಳ", detecting: "ಹುಡುಕಲಾಗುತ್ತಿದೆ...", status: "ಸ್ಥಿತಿ", armed: "ಸಕ್ರಿಯ", gpsSig: "GPS ಸಿಗ್ನಲ್", mediaPerm: "ಮಾಧ್ಯಮ ಅನುಮತಿಗಳು",
-                tools: "⚔️ ತುರ್ತು ಉಪಕರಣಗಳು", btnLoc: "ಲೈವ್ ಸ್ಥಳ", btnLocDesc: "ಹಂಚಿಕೊಳ್ಳಿ", btnCall: "ನಕಲಿ ಕರೆ", btnCallDesc: "ಸುರಕ್ಷಿತವಾಗಿ ತಪ್ಪಿಸಿಕೊಳ್ಳಿ", btnRec: "ಸಾಕ್ಷ್ಯ ರೆಕಾರ್ಡ್", btnRecDesc: "ಆಡಿಯೋ/ವಿಡಿಯೋ", btnHist: "ಸ್ಥಳ ಇತಿಹಾಸ", btnHistDesc: "ಟೈಮ್‌ಲೈನ್ ನೋಡಿ",
-                contacts: "🔌 ಸಂಪರ್ಕಗಳು", primary: "ಪ್ರಾಥಮಿಕ ಸಂಪರ್ಕ", secondary: "ದ್ವಿತೀಯ ಸಂಪರ್ಕ", ready: "ಕರೆ ಮಾಡಿ", footer: "🔐 ಸುರಕ್ಷಿತ | 🛡️ ಎನ್‌ಕ್ರಿಪ್ಟ್"
-            },
-            ml: {
-                subtitle: "⚡ സുരക്ഷാ സിസ്റ്റം സജീവം", sosTitle: "അടിയന്തര അലർട്ട്", sosBtn: "സഹായത്തിനായി അമർത്തുക", sosDesc: "SOS അയക്കുക. രഹസ്യ റെക്കോർഡിംഗ് യാന്ത്രികമായി ആരംഭിക്കും.",
-                liveLoc: "📡 ലൈവ് ലൊക്കേഷൻ", detecting: "തിരയുന്നു...", status: "നില", armed: "സജീവം", gpsSig: "GPS സിഗ്നൽ", mediaPerm: "മീഡിയ അനുമതികൾ",
-                tools: "⚔️ അടിയന്തര ടൂളുകൾ", btnLoc: "ലൈവ് ലൊക്കേഷൻ", btnLocDesc: "പങ്കിടുക", btnCall: "വ്യാജ കോൾ", btnCallDesc: "സുരക്ഷിതമായി രക്ഷപ്പെടുക", btnRec: "തെളിവ് റെക്കോർഡ്", btnRecDesc: "ഓഡിയോ/വീഡിയോ", btnHist: "ലൊക്കേഷൻ ചരിത്രം", btnHistDesc: "ടൈംലൈൻ കാണുക",
-                contacts: "🔌 കോൺടാക്റ്റുകൾ", primary: "പ്രാഥമിക കോൺടാക്റ്റ്", secondary: "ദ്വിതീയ കോൺടാക്റ്റ്", ready: "വിളിക്കാൻ", footer: "🔐 സുരക്ഷിതം | 🛡️ എൻക്രിപ്റ്റ് ചെയ്തത്"
-            }
+            en: { subtitle: "⚡ SECURITY SYSTEM ACTIVE", sosTitle: "Emergency Alert System", sosBtn: "TAP FOR HELP", sosDesc: "Press and send SOS. Background secret recording will start automatically.", liveLoc: "📡 Live Location", detecting: "Detecting location...", status: "STATUS", armed: "ARMED", gpsSig: "GPS SIGNAL", mediaPerm: "MEDIA PERMISSIONS", tools: "⚔️ Emergency Tools", btnLoc: "LIVE LOCATION", btnLocDesc: "Stream & Share", btnCall: "FAKE CALL", btnCallDesc: "Escape Safely", btnRec: "RECORD EVIDENCE", btnRecDesc: "Audio & Video Proof", btnHist: "LOCATION HISTORY", btnHistDesc: "View Timeline", contacts: "🔌 Emergency Contacts", primary: "PRIMARY CONTACT", secondary: "SECONDARY CONTACT", ready: "TAP TO CALL", footer: "🔐 ENCRYPTED | 🛡️ SECURE | ⚡ REAL-TIME" },
+            hi: { subtitle: "⚡ सुरक्षा प्रणाली सक्रिय", sosTitle: "आपातकालीन अलर्ट सिस्टम", sosBtn: "मदद के लिए दबाएं", sosDesc: "SOS भेजें। गुप्त रिकॉर्डिंग अपने आप शुरू हो जाएगी।", liveLoc: "📡 लाइव लोकेशन", detecting: "लोकेशन खोज रहा है...", status: "स्थिति", armed: "सक्रिय", gpsSig: "जीपीएस सिग्नल", mediaPerm: "मीडिया अनुमतियां", tools: "⚔️ आपातकालीन उपकरण", btnLoc: "लाइव लोकेशन", btnLocDesc: "स्ट्रीम और साझा करें", btnCall: "फर्जी कॉल", btnCallDesc: "सुरक्षित बचें", btnRec: "सबूत रिकॉर्ड करें", btnRecDesc: "ऑडियो/वीडियो प्रमाण", btnHist: "लोकेशन का इतिहास", btnHistDesc: "टाइमलाइन देखें", contacts: "🔌 आपातकालीन संपर्क", primary: "प्राथमिक संपर्क", secondary: "द्वितीयक संपर्क", ready: "कॉल करें", footer: "🔐 एन्क्रिप्टेड | 🛡️ सुरक्षित | ⚡ वास्तविक समय" },
+            rj: { subtitle: "⚡ सुरक्षा सिस्टम चालू", sosTitle: "इमरजेंसी अलर्ट सिस्टम", sosBtn: "मदद खातिर दबाओ", sosDesc: "SOS भेजो। गुप्त रिकॉर्डिंग अपने आप शुरू होवेगी।", liveLoc: "📡 लाइव लोकेशन", detecting: "लोकेशन ढूंढे है...", status: "स्थिति", armed: "चालू", gpsSig: "GPS सिग्नल", mediaPerm: "मीडिया परमिशन", tools: "⚔️ इमरजेंसी टूल", btnLoc: "लाइव लोकेशन", btnLocDesc: "शेयर करो", btnCall: "फर्जी कॉल", btnCallDesc: "सुरक्षित बचो", btnRec: "सबूत रिकॉर्ड", btnRecDesc: "ऑडियो/वीडियो", btnHist: "लोकेशन हिस्ट्री", btnHistDesc: "टाइमलाइन देखो", contacts: "🔌 इमरजेंसी संपर्क", primary: "पहलो संपर्क", secondary: "दूजो संपर्क", ready: "कॉल करां", footer: "🔐 सुरक्षित | ⚡ रियल-टाइम" },
+            pa: { subtitle: "⚡ ਸੁਰੱਖਿਆ ਸਿਸਟਮ ਸਰਗਰਮ", sosTitle: "ਐਮਰਜੈਂਸੀ ਅਲਰਟ ਸਿਸਟਮ", sosBtn: "ਮਦਦ ਲਈ ਦਬਾਓ", sosDesc: "SOS ਭੇਜੋ। ਗੁਪਤ ਰਿਕਾਰਡਿੰਗ ਆਪਣੇ ਆਪ ਸ਼ੁਰੂ ਹੋ ਜਾਵੇਗੀ।", liveLoc: "📡 ਲਾਈਵ ਲੋਕੇਸ਼ਨ", detecting: "ਲੋਕੇਸ਼ਨ ਲੱਭ ਰਿਹਾ ਹੈ...", status: "ਸਥਿਤੀ", armed: "ਸਰਗਰਮ", gpsSig: "GPS ਸਿਗਨਲ", mediaPerm: "ਮੀਡੀਆ ਇਜਾਜ਼ਤਾਂ", tools: "⚔️ ਐਮਰਜੈਂਸੀ ਟੂਲ", btnLoc: "ਲਾਈਵ ਲੋਕੇਸ਼ਨ", btnLocDesc: "ਸ਼ੇਅਰ ਕਰੋ", btnCall: "ਫਰਜ਼ੀ ਕਾਲ", btnCallDesc: "ਸੁਰੱਖਿਅਤ ਬਚੋ", btnRec: "ਸਬੂਤ ਰਿਕਾਰਡ", btnRecDesc: "ਆਡੀਓ/ਵੀਡੀਓ", btnHist: "ਲੋਕੇਸ਼ਨ ਇਤਿਹਾਸ", btnHistDesc: "ਟਾਈਮਲਾਈਨ ਦੇਖੋ", contacts: "🔌 ਸੰਪਰਕ", primary: "ਪਹਿਲਾ ਸੰਪਰਕ", secondary: "ਦੂਜਾ ਸੰਪਰਕ", ready: "ਕਾਲ ਕਰੋ", footer: "🔐 ਸੁਰੱਖਿਅਤ | ⚡ ਰੀਅਲ-ਟਾਈਮ" },
+            gu: { subtitle: "⚡ સુરક્ષા સિસ્ટમ સક્રિય", sosTitle: "કટોકટી ચેતવણી સિસ્ટમ", sosBtn: "મદદ માટે દબાવો", sosDesc: "SOS મોકલો. ગુપ્ત રેકોર્ડિંગ આપમેળે શરૂ થશે.", liveLoc: "📡 લાઇવ લોકેશન", detecting: "લોकेशन શોધી રહ્યું છે...", status: "સ્થિતિ", armed: "સક્રિય", gpsSig: "જીપીએસ સિગ્નલ", mediaPerm: "મીડિયા પરવાનગીઓ", tools: "⚔️ કટોકટીનાં સાધનો", btnLoc: "લાઇવ લોકેશન", btnLocDesc: "સ્ટ્રીમ અને શેર કરો", btnCall: "નકલી કૉલ", btnCallDesc: "સલામત બચો", btnRec: "પુરાવા રેકોર્ડ", btnRecDesc: "ઓડિયો/વિડિયો", btnHist: "લોકેશન ઇતિહાસ", btnHistDesc: "ટાઇમલાઇન જુઓ", contacts: "🔌 કટોકટી સંપર્કો", primary: "પ્રાથમિક સંપર્ક", secondary: "ગૌણ સંપર્ક", ready: "કૉલ કરો", footer: "🔐 એન્ક્રિપ્ટેડ | 🛡️ સુરક્ષિત" },
+            mr: { subtitle: "⚡ सुरक्षा प्रणाली सक्रिय", sosTitle: "आणीबाणी अलर्ट सिस्टम", sosBtn: "मदतीसाठी दाबा", sosDesc: "SOS पाठवा. गुप्त रेकॉर्डिंग आपोआप सुरू होईल.", liveLoc: "📡 लाईव्ह लोकेशन", detecting: "लोकेशन शोधत आहे...", status: "स्थिती", armed: "सक्रिय", gpsSig: "जीपीएस सिग्नल", mediaPerm: "मीडिया परवानग्या", tools: "⚔️ आपत्कालीन साधने", btnLoc: "लाईव्ह लोकेशन", btnLocDesc: "स्ट्रीम आणि शेअर करा", btnCall: "खोटा कॉल", btnCallDesc: "सुरक्षित सुटका", btnRec: "पुरावा रेकॉर्ड", btnRecDesc: "ऑडिओ/व्हिडिओ", btnHist: "लोकेशन इतिहास", btnHistDesc: "टाइमलाइन पहा", contacts: "🔌 आपत्कालीन संपर्क", primary: "प्राथमिक संपर्क", secondary: "दुय्यम संपर्क", ready: "कॉल करा", footer: "🔐 एनक्रिप्टेड | 🛡️ सुरक्षित" },
+            bn: { subtitle: "⚡ নিরাপত্তা ব্যবস্থা সক্রিয়", sosTitle: "জরুরী সতর্কতা", sosBtn: "সাহায্যের জন্য টিপুন", sosDesc: "SOS পাঠান। গোপন রেকর্ডিং স্বয়ংক্রিয়ভাবে শুরু হবে।", liveLoc: "📡 লাইভ লোকেশন", detecting: "লোকেশন খোঁজা হচ্ছে...", status: "অবস্থা", armed: "সক্রিয়", gpsSig: "জিপিএস সংকেত", mediaPerm: "মিডিয়া অনুমতি", tools: "⚔️ জরুরী সরঞ্জাম", btnLoc: "লাইভ লোকেশন", btnLocDesc: "শেয়ার করুন", btnCall: "ভুয়া কল", btnCallDesc: "নিরাপদে পালান", btnRec: "প্রমাণ রেকর্ড", btnRecDesc: "অডিও/ভিডিও", btnHist: "লোকেশন ইতিহাস", btnHistDesc: "টাইমলাইন দেখুন", contacts: "🔌 পরিচিতি", primary: "প্রাথমিক যোগাযোগ", secondary: "মাধ্যমিক যোগাযোগ", ready: "কল করুন", footer: "🔐 এনক্রিপ্ট করা | 🛡️ নিরাপদ" },
+            or: { subtitle: "⚡ ସୁରକ୍ଷା ବ୍ୟବସ୍ଥା ସକ୍ରିୟ", sosTitle: "ଜରୁରୀକାଳୀନ ଆଲର୍ଟ", sosBtn: "ସାହାଯ୍ୟ ପାଇଁ ଦବାନ୍ତୁ", sosDesc: "SOS ପଠାନ୍ତୁ। ଗୁପ୍ତ ରେକର୍ଡିଂ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଆରମ୍ଭ ହେବ।", liveLoc: "📡 ଲାଇଭ୍ ଲୋକେସନ୍", detecting: "ଲୋକେସନ୍ ଖୋଜୁଛି...", status: "ସ୍ଥିତି", armed: "ସକ୍ରିୟ", gpsSig: "GPS ସିଗନାଲ୍", mediaPerm: "ମିଡିଆ ଅନୁମତି", tools: "⚔️ ଜରୁରୀକାଳୀନ ଉପକରଣ", btnLoc: "ଲାଇଭ୍ ଲୋକେସନ୍", btnLocDesc: "ସେୟାର କରନ୍ତୁ", btnCall: "ନକଲି କଲ୍", btnCallDesc: "ସୁରକ୍ଷିତ ରୁହନ୍ତୁ", btnRec: "ପ୍ରମାଣ ରେକର୍ଡ", btnRecDesc: "ଅଡିଓ/ଭିଡିଓ", btnHist: "ଲୋକେସନ୍ ଇତିହାସ", btnHistDesc: "ଟାଇମଲାଇନ୍ ଦେଖନ୍ତୁ", contacts: "🔌 ସମ୍ପର୍କ", primary: "ପ୍ରାଥମିକ ସମ୍ପର୍କ", secondary: "ଦ୍ଵିତୀୟ ସମ୍ପର୍କ", ready: "କଲ୍ କରନ୍ତୁ", footer: "🔐 ସୁରକ୍ଷିତ | ⚡ ରିଅଲ୍-ଟାଇମ୍" },
+            as: { subtitle: "⚡ সুৰক্ষা ব্যৱস্থা সক্ৰিয়", sosTitle: "জৰুৰীকালীন এলাৰ্ট", sosBtn: "সহায়ৰ বাবে টিপক", sosDesc: "SOS পঠাওক। গোপন ৰেকৰ্ডিং স্বয়ংক্ৰিয়ভাৱে আৰম্ভ হ'ব।", liveLoc: "📡 লাইভ লোকেশ্বন", detecting: "বিচাৰি থকা হৈছে...", status: "স্থিতি", armed: "সক্ৰিয়", gpsSig: "GPS ছিগনেল", mediaPerm: "মিডিয়া অনুমতি", tools: "⚔️ জৰুৰী সঁজুলি", btnLoc: "লাইভ লোকেশ্বন", btnLocDesc: "শ্বেয়াৰ কৰক", btnCall: "ভুৱা কল", btnCallDesc: "সুৰক্ষিত পলায়ন", btnRec: "প্ৰমাণ ৰেকৰ্ড", btnRecDesc: "অডিঅ'/ভিডিঅ'", btnHist: "অৱস্থান ইতিহাস", btnHistDesc: "টাইমলাইন চাওক", contacts: "🔌 জৰুৰী সম্পৰ্ক", primary: "প্ৰাথমিক সম্পৰ্ক", secondary: "দ্বিতীয় সম্পৰ্ক", ready: "কল কৰক", footer: "🔐 সুৰক্ষিত | ⚡ ৰিয়েল-টাইম" },
+            te: { subtitle: "⚡ భద్రతా వ్యవస్థ సక్రియం", sosTitle: "అత్యవసర హెచ్చరిక", sosBtn: "సహాయం కోసం నొక్కండి", sosDesc: "SOS పంపండి. రహస్య రికార్డింగ్ స్వయంచాలకంగా ప్రారంభమవుతుంది.", liveLoc: "📡 లైవ్ లొకేషన్", detecting: "లొకేషన్ కనుగొనబడుతోంది...", status: "స్థితి", armed: "సక్రియం", gpsSig: "GPS సిగ్నల్", mediaPerm: "మీడియా అనుమతులు", tools: "⚔️ అత్యవసర సాధనాలు", btnLoc: "లైవ్ లొకేషన్", btnLocDesc: "షేర్ చేయండి", btnCall: "నకిలీ కాల్", btnCallDesc: "సురక్షితంగా తప్పించుకోండి", btnRec: "ఆధారం రికార్డ్", btnRecDesc: "ఆడియో/వీడియో", btnHist: "లొకేషన్ చరిత్ర", btnHistDesc: "టైమ్‌లైన్ చూడండి", contacts: "🔌 పరిచయాలు", primary: "ప్రాథమిక పరిచయం", secondary: "ద్వితీయ పరిచయం", ready: "కాల్ చేయండి", footer: "🔐 సురక్షితం | 🛡️ ఎన్‌క్రిప్ట్" },
+            ta: { subtitle: "⚡ பாதுகாப்பு அமைப்பு செயலில் உள்ளது", sosTitle: "அவசர எச்சரிக்கை", sosBtn: "உதவிக்கு அழுத்தவும்", sosDesc: "SOS ஐ அனுப்பவும். ரகசிய பதிவு தானாகவே தொடங்கும்.", liveLoc: "📡 நேரலை இருப்பிடம்", detecting: "இருப்பிடம் தேடப்படுகிறது...", status: "நிலை", armed: "தயார்", gpsSig: "ஜிபிஎஸ் சிக்னல்", mediaPerm: "ஊடக அனுமதிகள்", tools: "⚔️ அவசர கருவிகள்", btnLoc: "நேரலை இருப்பிடம்", btnLocDesc: "பகிரவும்", btnCall: "போலி அழைப்பு", btnCallDesc: "பாதுகாப்பாக தப்பிக்க", btnRec: "ஆதாரம் பதிவு", btnRecDesc: "ஆடியோ/வீడియో", btnHist: "இருப்பிட வரலாறு", btnHistDesc: "வரலாற்றைப் காண்க", contacts: "🔌 தொடர்புகள்", primary: "முதன்மை தொடர்பு", secondary: "இரண்டாம் நிலை தொடர்பு", ready: "அழைக்க", footer: "🔐 பாதுகாப்பானது | 🛡️ என்க்ரிப்ட்" },
+            kn: { subtitle: "⚡ ಭದ್ರತಾ ವ್ಯವಸ್ಥೆ ಸಕ್ರಿಯ", sosTitle: "ತುರ್ತು ಎಚ್ಚರಿಕೆ", sosBtn: "ಸಹಾಯಕ್ಕಾಗಿ ಒತ್ತಿರಿ", sosDesc: "SOS ಕಳುಹಿಸಿ. ರಹಸ್ಯ ರೆಕಾರ್ಡಿಂಗ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ.", liveLoc: "📡 ಲೈವ್ ಸ್ಥಳ", detecting: "ಹುಡುಕಲಾಗುತ್ತಿದೆ...", status: "ಸ್ಥಿತಿ", armed: "ಸಕ್ರಿಯ", gpsSig: "GPS ಸಿಗ್ನಲ್", mediaPerm: "ಮಾಧ್ಯಮ ಅನುಮತಿಗಳು", tools: "⚔️ ತುರ್ತು ಉಪಕರಣಗಳು", btnLoc: "ಲೈವ್ ಸ್ಥಳ", btnLocDesc: "ಹಂಚಿಕೊಳ್ಳಿ", btnCall: "ನಕಲಿ ಕರೆ", btnCallDesc: "ಸುರಕ್ಷಿತವಾಗಿ ತಪ್ಪಿಸಿಕೊಳ್ಳಿ", btnRec: "ಸಾಕ್ಷ್ಯ ರೆಕಾರ್ಡ್", btnRecDesc: "ಆಡಿಯೋ/ವಿಡಿಯೋ", btnHist: "ಸ್ಥಳ ಇತಿಹಾಸ", btnHistDesc: "ಟೈಮ್‌ಲೈನ್ ನೋಡಿ", contacts: "🔌 ಸಂಪರ್ಕಗಳು", primary: "ಪ್ರಾಥಮಿಕ ಸಂಪರ್ಕ", secondary: "ದ್ವಿತೀಯ ಸಂಪರ್ಕ", ready: "ಕರೆ ಮಾಡಿ", footer: "🔐 ಸುರಕ್ಷಿತ | 🛡️ ಎನ್‌ಕ್ರಿಪ್ಟ್" },
+            ml: { subtitle: "⚡ സുരക്ഷാ സിസ്റ്റം സജീവം", sosTitle: "അടിയന്തര അലർട്ട്", sosBtn: "സഹായത്തിനായി അമർത്തുക", sosDesc: "SOS അയക്കുക. രഹസ്യ റെക്കോർഡിംഗ് യാന്ത്രികമായി ആരംഭിക്കും.", liveLoc: "📡 ലൈവ് ലൊക്കേഷൻ", detecting: "തിരയുന്നു...", status: "നില", armed: "സജീവം", gpsSig: "GPS സിഗ്നൽ", mediaPerm: "മീഡിയ അനുമതികൾ", tools: "⚔️ അടിയന്തര ടൂളുകൾ", btnLoc: "ലൈവ് ലൊക്കേഷൻ", btnLocDesc: "പങ്കിടുക", btnCall: "വ്യാജ കോൾ", btnCallDesc: "സുരക്ഷിതമായി രക്ഷപ്പെടുക", btnRec: "തെളിവ് റെക്കോർഡ്", btnRecDesc: "ഓഡിയോ/വീഡിയോ", btnHist: "ലൊക്കേഷൻ ചരിത്രം", btnHistDesc: "ടൈംലൈൻ കാണുക", contacts: "🔌 കോൺടാക്റ്റുകൾ", primary: "പ്രാഥമിക കോൺടാക്റ്റ്", secondary: "ദ്വിതീയ കോൺടാക്റ്റ്", ready: "വിളിക്കാൻ", footer: "🔐 സുരക്ഷിതം | 🛡️ എൻക്രിപ്റ്റ് ചെയ്തത്" }
         };
 
         const stateLangMap = {
@@ -835,13 +541,10 @@
             }
         }
 
-
-        // --- FAKE CALL VOICE (PHASE 2) ---
+        // --- FAKE CALL VOICE ---
         function playFakeCallVoice() {
             if ('speechSynthesis' in window) {
-                const msg = new SpeechSynthesisUtterance();
-                // This content is designed to intimidate an attacker by suggesting help is visible/close
-                msg.text = "Hey, I'm just 2 minutes away. I can see you now. Stay right there, I'm pulling up.";
+                const msg = new SpeechSynthesisUtterance("Hey, I'm just 2 minutes away. I can see you now. Stay right there, I'm pulling up.");
                 msg.pitch = 1;
                 msg.rate = 0.9;
                 msg.volume = 1;
@@ -853,7 +556,6 @@
         async function initSystem() {
             applyTranslations();
 
-            // Permission Check
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                 stream.getTracks().forEach(track => track.stop());
@@ -863,7 +565,6 @@
                 document.getElementById('media-status').textContent = "DENIED";
             }
 
-            // Geolocation Fix & Watch
             if (navigator.geolocation) {
                 navigator.geolocation.watchPosition(async (pos) => {
                     state.currentLocation.lat = pos.coords.latitude;
@@ -877,7 +578,6 @@
                     document.getElementById('location-status').querySelector('span').classList.replace('bg-yellow-400', 'bg-green-400');
                     document.getElementById('loc-status-text').classList.replace('text-yellow-400', 'text-green-400');
 
-                    // Reverse Geocoding
                     if (state.currentLocation.address === 'Fetching location...' || state.currentLocation.address === 'Detecting...') {
                         try {
                             const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`);
@@ -947,7 +647,7 @@
                 const color = item.status === 'sos' ? 'text-red-400' : 'text-cyan-400';
 
                 // FIXED GOOGLE MAPS LINK FOR HISTORY
-                const mapLink = `https://maps.google.com/?q=${item.latitude},${item.longitude}`;
+                const mapLink = `http://googleusercontent.com/maps.google.com/?q=${item.latitude},${item.longitude}`;
 
                 return `
                 <div class="bg-white/5 rounded-xl p-4 border border-gray-700/50">
@@ -968,36 +668,87 @@
             setTimeout(() => toast.classList.add('hidden'), 4000);
         }
 
-        // --- 3. SECRET RECORDING ENGINE (NEW) ---
-        async function startSecretRecording() {
-            try {
-                state.mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-                state.recordedChunks = [];
-                state.mediaRecorder = new MediaRecorder(state.mediaStream);
-                state.mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) state.recordedChunks.push(e.data); };
+        // --- 3. RECORDING ENGINE (LOCAL SAVING ONLY) ---
+        function startLocalRecordingUI(stream, type = 'video') {
+            state.recordedChunks = [];
+            state.mediaRecorder = new MediaRecorder(stream);
+            state.mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) state.recordedChunks.push(e.data); };
 
-                state.mediaRecorder.onstop = () => {
-                    const blob = new Blob(state.recordedChunks, { type: 'video/webm' });
-                    const a = document.createElement('a');
-                    a.href = URL.createObjectURL(blob);
-                    a.download = `NARUKSHA_SECRET_EVIDENCE_${Date.now()}.webm`;
-                    a.click();
-                    saveLocationToHistory('recording');
-                    showToast(`✅ SECRET EVIDENCE SAVED TO DEVICE!`);
-                };
+            state.mediaRecorder.onstop = () => {
+                const blob = new Blob(state.recordedChunks, { type: type === 'video' ? 'video/webm' : 'audio/webm' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `NARUKSHA_EVIDENCE_${Date.now()}.webm`;
+                a.click(); 
+                saveLocationToHistory('recording');
+                showToast(`✅ EVIDENCE SAVED TO DEVICE!`);
+            };
 
-                state.mediaRecorder.start();
-                document.getElementById('secret-stop-btn').classList.remove('hidden'); // Show stop button
-            } catch (err) {
-                console.error("Secret recording blocked");
-            }
+            state.mediaRecorder.start();
+            state.seconds.recording = 0;
+
+            // This updates the HUD inside the existing manual modal to reflect background recording
+            document.getElementById('recording-status').classList.remove('hidden');
+            document.getElementById('start-audio-record').classList.add('hidden');
+            document.getElementById('start-video-record').classList.add('hidden');
+            if (type === 'video') document.getElementById('video-preview').classList.remove('hidden');
+
+            const stopBtn = document.getElementById('stop-record');
+            stopBtn.classList.remove('hidden');
+            stopBtn.classList.add('flex');
+
+            state.timers.recording = setInterval(() => {
+                state.seconds.recording++;
+                const m = Math.floor(state.seconds.recording / 60).toString().padStart(2, '0');
+                const s = (state.seconds.recording % 60).toString().padStart(2, '0');
+                document.getElementById('recording-timer').textContent = `${m}:${s}`;
+            }, 1000);
         }
 
-        document.getElementById('secret-stop-btn').addEventListener('click', () => {
+        document.getElementById('stop-record').addEventListener('click', () => {
             if (state.mediaRecorder && state.mediaRecorder.state !== 'inactive') state.mediaRecorder.stop();
             if (state.mediaStream) state.mediaStream.getTracks().forEach(track => track.stop());
-            document.getElementById('secret-stop-btn').classList.add('hidden');
+            clearInterval(state.timers.recording);
             stopSiren();
+
+            document.getElementById('recording-status').classList.add('hidden');
+            document.getElementById('video-preview').classList.add('hidden');
+            document.getElementById('start-audio-record').classList.remove('hidden');
+            document.getElementById('start-video-record').classList.remove('hidden');
+
+            const stopBtn = document.getElementById('stop-record');
+            stopBtn.classList.add('hidden');
+            stopBtn.classList.remove('flex');
+            document.getElementById('record-modal').classList.add('hidden');
+        });
+
+        // Manual Record Button Triggers
+        document.getElementById('record-btn').addEventListener('click', () => { 
+            document.getElementById('record-modal').classList.remove('hidden'); 
+        });
+        
+        document.getElementById('close-record-modal').addEventListener('click', () => { 
+            // Only close if not actively recording. If recording, they must hit stop.
+            if(state.mediaRecorder && state.mediaRecorder.state === 'recording') {
+                showToast("Stop recording to close.");
+            } else {
+                document.getElementById('record-modal').classList.add('hidden'); 
+            }
+        });
+
+        document.getElementById('start-audio-record').addEventListener('click', async () => {
+            try {
+                state.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                startLocalRecordingUI(state.mediaStream, 'audio');
+            } catch (error) { showToast('Microphone access denied!'); }
+        });
+
+        document.getElementById('start-video-record').addEventListener('click', async () => {
+            try {
+                state.mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                document.getElementById('preview-video').srcObject = state.mediaStream;
+                startLocalRecordingUI(state.mediaStream, 'video');
+            } catch (error) { showToast('Camera access denied!'); }
         });
 
 
@@ -1007,14 +758,14 @@
 
             startSiren();
             saveLocationToHistory('sos');
-            showToast("🆘 SOS DISPATCHED!");
+            showToast("🆘 SOS DISPATCHED! Camera activated secretly.");
 
             const lat = state.currentLocation.lat;
             const lng = state.currentLocation.lng;
 
             if (lat && lng) {
                 // FIXED GOOGLE MAPS LINK FOR SMS
-                const mapsLink = `https://maps.google.com/?q=${lat},${lng}`;
+                const mapsLink = `http://googleusercontent.com/maps.google.com/?q=${lat},${lng}`;
                 const phone1 = localStorage.getItem('local_phone_1') || '';
                 const message = encodeURIComponent(`🆘 EMERGENCY! I need help. My live location: ${mapsLink}`);
 
@@ -1029,11 +780,19 @@
 
                 // Auto-Open SMS
                 if (phone1) window.location.href = `sms:${phone1}?body=${message}`;
-
-                // Secret Recording Start (Hidden UI)
-                startSecretRecording();
             } else {
-                showToast("Waiting for GPS signal...");
+                showToast("Waiting for GPS to send location...");
+            }
+
+            // 3. Secret Recording Start (Hidden UI) - Reuses the local recording logic without opening the modal
+            if (!state.mediaRecorder || state.mediaRecorder.state === 'inactive') {
+                try {
+                    state.mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                    document.getElementById('preview-video').srcObject = state.mediaStream;
+                    startLocalRecordingUI(state.mediaStream, 'video');
+                } catch (error) { 
+                    console.error("Camera blocked"); 
+                }
             }
         });
 
@@ -1089,85 +848,14 @@
             }
         });
 
-        // Record Evidence (Manual from tools menu)
-        document.getElementById('record-btn').addEventListener('click', () => document.getElementById('record-modal').classList.remove('hidden'));
-        document.getElementById('close-record-modal').addEventListener('click', () => document.getElementById('record-modal').classList.add('hidden'));
-
-        document.getElementById('start-audio-record').addEventListener('click', async () => {
-            try {
-                state.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                startManualRecording(state.mediaStream, 'audio');
-            } catch (error) { showToast('Microphone access denied!'); }
-        });
-
-        document.getElementById('start-video-record').addEventListener('click', async () => {
-            try {
-                state.mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-                document.getElementById('preview-video').srcObject = state.mediaStream;
-                startManualRecording(state.mediaStream, 'video');
-            } catch (error) { showToast('Camera access denied!'); }
-        });
-
-        function startManualRecording(stream, type) {
-            state.recordedChunks = [];
-            state.mediaRecorder = new MediaRecorder(stream);
-            state.mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) state.recordedChunks.push(e.data); };
-
-            state.mediaRecorder.onstop = () => {
-                const blob = new Blob(state.recordedChunks, { type: type === 'video' ? 'video/webm' : 'audio/webm' });
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = `EVIDENCE_${Date.now()}.webm`;
-                a.click();
-                saveLocationToHistory('recording');
-                showToast(`🎥 EVIDENCE SAVED LOCALLY!`);
-            };
-
-            state.mediaRecorder.start();
-            state.seconds.recording = 0;
-
-            document.getElementById('recording-status').classList.remove('hidden');
-            document.getElementById('start-audio-record').classList.add('hidden');
-            document.getElementById('start-video-record').classList.add('hidden');
-            if (type === 'video') document.getElementById('video-preview').classList.remove('hidden');
-
-            const stopBtn = document.getElementById('stop-record');
-            stopBtn.classList.remove('hidden');
-            stopBtn.classList.add('flex');
-
-            state.timers.recording = setInterval(() => {
-                state.seconds.recording++;
-                const m = Math.floor(state.seconds.recording / 60).toString().padStart(2, '0');
-                const s = (state.seconds.recording % 60).toString().padStart(2, '0');
-                document.getElementById('recording-timer').textContent = `${m}:${s}`;
-            }, 1000);
-        }
-
-        document.getElementById('stop-record').addEventListener('click', () => {
-            if (state.mediaRecorder && state.mediaRecorder.state !== 'inactive') state.mediaRecorder.stop();
-            if (state.mediaStream) state.mediaStream.getTracks().forEach(track => track.stop());
-            clearInterval(state.timers.recording);
-            stopSiren();
-
-            document.getElementById('recording-status').classList.add('hidden');
-            document.getElementById('video-preview').classList.add('hidden');
-            document.getElementById('start-audio-record').classList.remove('hidden');
-            document.getElementById('start-video-record').classList.remove('hidden');
-
-            const stopBtn = document.getElementById('stop-record');
-            stopBtn.classList.add('hidden');
-            stopBtn.classList.remove('flex');
-            document.getElementById('record-modal').classList.add('hidden');
-        });
-
         // --- CLICK TO CALL CONFIGURATION ---
         function updateContactLinks(p1, p2) {
             document.getElementById('contact-1-card').onclick = () => {
-                if (p1) window.location.href = `tel:${p1}`;
+                if(p1) window.location.href = `tel:${p1}`;
                 else showToast('Phone number not set! Click ⚙️ to add.');
             };
             document.getElementById('contact-2-card').onclick = () => {
-                if (p2) window.location.href = `tel:${p2}`;
+                if(p2) window.location.href = `tel:${p2}`;
                 else showToast('Phone number not set! Click ⚙️ to add.');
             };
         }
@@ -1199,7 +887,6 @@
 
             showToast("Saved! Syncing to Cloud...");
 
-            // Saves to THIS PHONE'S private cloud folder
             if (window.db) {
                 try {
                     await window.fbSetDoc(window.fbDoc(window.db, "settings", deviceId), {
@@ -1235,7 +922,6 @@
             updateContactLinks(p1, p2); // Bind click-to-call on load
         });
 
-        // Pulls only from THIS PHONE'S private cloud folder
         const fbSyncLoop = setInterval(() => {
             if (window.db) {
                 clearInterval(fbSyncLoop);
@@ -1268,35 +954,24 @@
                     document.getElementById('cloud-p1').value = p1;
                     document.getElementById('cloud-p2').value = p2;
 
-                    updateContactLinks(p1, p2); // Bind click-to-call after sync
+                    updateContactLinks(p1, p2); 
                 }
             } catch (e) { console.log("Cloud fetch error"); }
         }
-        // --- ADD THIS AT THE VERY BOTTOM OF YOUR <script> IN index.html ---
 
-        // 1. Register Service Worker (Required for PWA Install)
+        // --- PWA INSTALLATION LOGIC ---
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('Service Worker Registered'))
-                    .catch(err => console.log('Service Worker Failed', err));
+                navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW Failed', err));
             });
         }
 
-        // 2. PWA INSTALLATION LOGIC (ANDROID & iOS)
         let deferredPrompt;
         const installBtn = document.getElementById('install-btn');
 
-        // Check if the device is iOS
-        const isIos = () => {
-            const userAgent = window.navigator.userAgent.toLowerCase();
-            return /iphone|ipad|ipod/.test(userAgent);
-        };
-
-        // Check if already installed
+        const isIos = () => /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
         const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-        // Handle iOS Safari (Custom Instructions)
         if (isIos() && !isStandalone()) {
             installBtn.classList.remove('hidden');
             installBtn.addEventListener('click', () => {
@@ -1304,14 +979,9 @@
             });
         }
 
-        // Handle Android/Chrome (Native Prompt)
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent Chrome from automatically showing the prompt
             e.preventDefault();
-            // Stash the event so it can be triggered later
             deferredPrompt = e;
-
-            // Show the install button if not already installed
             if (!isStandalone()) installBtn.classList.remove('hidden');
 
             installBtn.addEventListener('click', async () => {
@@ -1327,7 +997,6 @@
             });
         });
 
-        // Hide button if successfully installed
         window.addEventListener('appinstalled', () => {
             installBtn.classList.add('hidden');
             deferredPrompt = null;
